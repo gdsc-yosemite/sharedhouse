@@ -16,6 +16,12 @@ module.exports = function(app, admin){
             db.collection(type).add({
                 name: data.listing_title,
                 address: data.address,
+                location: data.location,
+                sqft: data.property_sqft,
+                rate: data.listing_price,
+                start_date: data.property_sqft,
+                end_date: data.lease_end_date,
+                description: data.description,
                 contact: data.contact_info,
             }).then((docRef) => {
                 console.log("Docment written with ID: ", docRef.id);

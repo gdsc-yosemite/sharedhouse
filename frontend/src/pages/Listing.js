@@ -1,18 +1,17 @@
 
 import React, { useState } from "react";
 import '../App.css';
-import './Listings.css';
+import './Listing.css';
 
 function Listing() {
   const [inputs, setInputs] = useState({
     listing_title: "",
     address: "",
-    property_SqFt: "",
+    property_sqft: "",
     lease_start_date: "",
     location: "",
     listing_price: "",
     lease_end_date: "",
-    lease_rate: "",
     description: "",
     contact_info: "",
   });
