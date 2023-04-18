@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import '/Users/macbookairm1/Documents/CS Projects/Shared-house-proj/sharedhouse/frontend/src/App.css';
+import '../App.css';
 import './Listings.css';
 
 function Listing() {
@@ -25,6 +25,29 @@ function Listing() {
     }));
   };
 
+  const postListing = (event) => {
+    event.preventDefault();
+    console.log("hi", inputs);
+    var data = {
+      type: 'listing',
+      data: inputs
+    }
+    fetch('http://localhost:3001/firestore', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
+            body: JSON.stringify(data)
+        // }).then(response => {
+        //   console.log(response.text())
+        //   if(response.ok) {
+        //     return response.json();
+        //   } else {
+        //     throw new Error ('Someting went wrong...')
+        //   }
+        }).then((response) => response.json())
+          .then((json) => {
+            console.log(json)
+          });
+  }
       return (
         
         <div>
@@ -98,6 +121,7 @@ function Listing() {
             onChange={handleInputChange}
             className="input-text"
           />
+           <input type="submit" onClick={postListing}/>
         </div>
         
       );
