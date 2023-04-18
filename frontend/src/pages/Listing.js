@@ -49,7 +49,6 @@ function Listing() {
           });
   }
       return (
-        
         <div>
           <input
             type="text"
@@ -123,7 +122,6 @@ function Listing() {
           />
            <input type="submit" onClick={postListing}/>
         </div>
-        
       );
 }
 
