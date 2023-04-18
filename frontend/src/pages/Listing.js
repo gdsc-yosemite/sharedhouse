@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import '/Users/macbookairm1/Documents/CS Projects/Shared-house-proj/sharedhouse/frontend/src/App.css';
+import '../App.css';
 
 function Listing() {
   const [inputs, setInputs] = useState({
@@ -24,72 +24,103 @@ function Listing() {
     }));
   };
 
-      return (
-        
-        <div>
-          <input
-            type="text"
-            name="listing_title"
-            value={inputs.listing_title}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="address"
-            value={inputs.address}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="property_SqFt"
-            value={inputs.property_SqFt}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="lease_start_date"
-            value={inputs.lease_start_date}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="location"
-            value={inputs.location}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="listing_price"
-            value={inputs.listing_price}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="lease_end_date"
-            value={inputs.lease_end_date}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="lease_rate"
-            value={inputs.lease_rate}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="description"
-            value={inputs.description}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="contact_info"
-            value={inputs.contact_info}
-            onChange={handleInputChange}
-          />
-        </div>
-        
-      );
+  function postListing() {
+    console.log(inputs);
+    fetch('http://localhost:3001/firestore', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
+            body: inputs
+        }).then(response => {
+          console.log(response.text())
+          if(response.ok) {
+            return response.json();
+          } else {
+            throw new Error ('Someting went wrong...')
+          }
+        }).then((response) => response.json())
+          .then((json) => {
+            console.log(json)
+          });
+  }
+
+  return (
+    
+    <div>
+      <input
+        type="text"
+        name="listing_title"
+        placeholder="listing name"
+        value={inputs.listing_title}
+        onChange={handleInputChange}
+      />
+      <input
+        type="text"
+        name="address"
+        placeholder="address"
+        value={inputs.address}
+        onChange={handleInputChange}
+      />
+      <input
+        type="text"
+        name="property_SqFt"
+        placeholder="property size (sqft)"
+        value={inputs.property_SqFt}
+        onChange={handleInputChange}
+      />
+      <input
+        type="text"
+        name="lease_start_date"
+        placeholder="lease start date"
+        value={inputs.lease_start_date}
+        onChange={handleInputChange}
+      />
+      <input
+        type="text"
+        name="location"
+        placeholder="location"
+        value={inputs.location}
+        onChange={handleInputChange}
+      />
+      <input
+        type="text"
+        name="listing_price"
+        placeholder="price"
+        value={inputs.listing_price}
+        onChange={handleInputChange}
+      />
+      <input
+        type="text"
+        name="lease_end_date"
+        placeholder="lease end date"
+        value={inputs.lease_end_date}
+        onChange={handleInputChange}
+      />
+      <input
+        type="text"
+        name="lease_rate"
+        placeholder="rate"
+        value={inputs.lease_rate}
+        onChange={handleInputChange}
+      />
+      <input
+        type="text"
+        name="description"
+        placeholder="description"
+        value={inputs.description}
+        onChange={handleInputChange}
+      />
+      <input
+        type="text"
+        name="contact_info"
+        placeholder="contact"
+        value={inputs.contact_info}
+        onChange={handleInputChange}
+      />
+      <button onClick={postListing()}>
+        Post
+      </button>
+    </div>
+  );
 }
 
 export default Listing

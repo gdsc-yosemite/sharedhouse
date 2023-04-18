@@ -9,7 +9,10 @@ module.exports = function(app, admin){
         res.send({ message: type })
         if (type == 'listing') {
             db.collection(type).add({
-                name: data.title
+                name: data.listing_title,
+                address: data.address,
+                contact: data.contact_info,
+
             }).then((docRef) => {
                 console.log("Docment written with ID: ", docRef.id);
             }).catch((error) => {

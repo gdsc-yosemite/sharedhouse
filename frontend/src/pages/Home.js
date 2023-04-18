@@ -1,5 +1,5 @@
 import React from 'react';
-import '/Users/macbookairm1/Documents/CS Projects/Shared-house-proj/sharedhouse/frontend/src/App.css';
+import '../App.css';
 
 function Home() {
   return (

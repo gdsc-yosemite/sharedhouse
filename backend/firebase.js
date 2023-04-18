@@ -2,7 +2,7 @@
 // import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 
-// import { getFirestore } from "firebase/firestore";
+// import { getFirestore } from "firebase/firestore";;
 // import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 
 module.exports = function(app){
@@ -12,6 +12,8 @@ module.exports = function(app){
         credential: admin.credential.cert(serviceAccount)
     });
     require('./firestore')(app, admin);
+    require('./auth')(app, admin)
+    require('./storage')(app, admin);
 
     /*
     const firebase = require("firebase/app");
