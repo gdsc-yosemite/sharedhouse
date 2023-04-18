@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import '../App.css';
+import './Listings.css';
 
 function Listing() {
   const [inputs, setInputs] = useState({
@@ -47,83 +48,83 @@ function Listing() {
             console.log(json)
           });
   }
-
-  return (
-    
-    <div>
-      <input
-        type="text"
-        name="listing_title"
-        placeholder="listing name"
-        value={inputs.listing_title}
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        name="address"
-        placeholder="address"
-        value={inputs.address}
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        name="property_SqFt"
-        placeholder="property size (sqft)"
-        value={inputs.property_SqFt}
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        name="lease_start_date"
-        placeholder="lease start date"
-        value={inputs.lease_start_date}
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        name="location"
-        placeholder="location"
-        value={inputs.location}
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        name="listing_price"
-        placeholder="price"
-        value={inputs.listing_price}
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        name="lease_end_date"
-        placeholder="lease end date"
-        value={inputs.lease_end_date}
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        name="lease_rate"
-        placeholder="rate"
-        value={inputs.lease_rate}
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        name="description"
-        placeholder="description"
-        value={inputs.description}
-        onChange={handleInputChange}
-      />
-      <input
-        type="text"
-        name="contact_info"
-        placeholder="contact"
-        value={inputs.contact_info}
-        onChange={handleInputChange}
-      />
-      <input type="submit" onClick={postListing}/>
-    </div>
-  );
+      return (
+        
+        <div>
+          <input
+            type="text"
+            name="listing_title"
+            value={inputs.listing_title}
+            onChange={handleInputChange}
+            className="input-text"
+          />
+          <input
+            type="text"
+            name="address"
+            value={inputs.address}
+            onChange={handleInputChange}
+            className="input-text"
+          />
+          <input
+            type="text"
+            name="property_SqFt"
+            value={inputs.property_SqFt}
+            onChange={handleInputChange}
+            className="input-text"
+          />
+          <input
+            type="text"
+            name="lease_start_date"
+            value={inputs.lease_start_date}
+            onChange={handleInputChange}
+            className="input-text"
+          />
+          <input
+            type="text"
+            name="location"
+            value={inputs.location}
+            onChange={handleInputChange}
+            className="input-text"
+          />
+          <input
+            type="text"
+            name="listing_price"
+            value={inputs.listing_price}
+            onChange={handleInputChange}
+            className="input-text"
+          />
+          <input
+            type="text"
+            name="lease_end_date"
+            value={inputs.lease_end_date}
+            onChange={handleInputChange}
+            className="input-text"
+          />
+          <input
+            type="text"
+            name="lease_rate"
+            value={inputs.lease_rate}
+            onChange={handleInputChange}
+            className="input-text"
+          />
+          <input
+            type="text"
+            name="description"
+            value={inputs.description}
+            onChange={handleInputChange}
+            className="input-text"
+          />
+          <input
+            type="text"
+            name="contact_info"
+            value={inputs.contact_info}
+            onChange={handleInputChange}
+            className="input-text"
+          />
+           <input type="submit" onClick={postListing}/>
+        </div>
+        
+      );
 }
 
 export default Listing
