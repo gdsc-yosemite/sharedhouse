@@ -7,10 +7,10 @@ function Listing() {
   const [inputs, setInputs] = useState({
     listing_title: "",
     address: "",
-    property_sqft: "",
+    property_sqft: 0,
     lease_start_date: "",
     location: "",
-    listing_price: "",
+    listing_price: 0,
     lease_end_date: "",
     description: "",
     contact_info: "",
