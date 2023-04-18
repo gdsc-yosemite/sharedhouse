@@ -24,19 +24,24 @@ function Listing() {
     }));
   };
 
-  function postListing() {
-    console.log(inputs);
+  const postListing = (event) => {
+    event.preventDefault();
+    console.log("hi", inputs);
+    var data = {
+      type: 'listing',
+      data: inputs
+    }
     fetch('http://localhost:3001/firestore', {
             method: 'POST',
             headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
-            body: inputs
-        }).then(response => {
-          console.log(response.text())
-          if(response.ok) {
-            return response.json();
-          } else {
-            throw new Error ('Someting went wrong...')
-          }
+            body: JSON.stringify(data)
+        // }).then(response => {
+        //   console.log(response.text())
+        //   if(response.ok) {
+        //     return response.json();
+        //   } else {
+        //     throw new Error ('Someting went wrong...')
+        //   }
         }).then((response) => response.json())
           .then((json) => {
             console.log(json)
@@ -116,9 +121,7 @@ function Listing() {
         value={inputs.contact_info}
         onChange={handleInputChange}
       />
-      <button onClick={postListing()}>
-        Post
-      </button>
+      <input type="submit" onClick={postListing}/>
     </div>
   );
 }
