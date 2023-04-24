@@ -47,83 +47,83 @@ function Listing() {
             console.log(json)
           });
   }
-      return (
-        <div>
-          <input
-            type="text"
-            name="listing_title"
-            value={inputs.listing_title}
-            onChange={handleInputChange}
-            placeholder="Listing"
-            className="standard-text"
-          />
-          <input
-            type="text"
-            name="address"
-            value={inputs.address}
-            onChange={handleInputChange}
-            placeholder="Address"
-            className="standard-text"
-          />
-          <input
-            type="text"
-            name="property_sqft"
-            value={inputs.property_SqFt}
-            onChange={handleInputChange}
-            placeholder="Property SqFt"
-            className="standard-text"
-          />
-          <input
-            type="text"
-            name="lease_start_date"
-            value={inputs.lease_start_date}
-            onChange={handleInputChange}
-            placeholder="Lease Start Date"
-            className="standard-text"
-          />
-          <input
-            type="text"
-            name="location"
-            value={inputs.location}
-            onChange={handleInputChange}
-            placeholder="Location"
-            className="standard-text"
-          />
-          <input
-            type="text"
-            name="listing_price"
-            value={inputs.listing_price}
-            onChange={handleInputChange}
-            placeholder="Listing Price"
-            className="standard-text"
-          />
-          <input
-            type="text"
-            name="lease_end_date"
-            value={inputs.lease_end_date}
-            onChange={handleInputChange}
-            placeholder="Lease End Date"
-            className="standard-text"
-          />
-          <input
-            type="text"
-            name="description"
-            value={inputs.description}
-            onChange={handleInputChange}
-            placeholder="Property and Lease Description..."
-            className="standard-text"
-          />
-          <input
-            type="text"
-            name="contact_info"
-            value={inputs.contact_info}
-            onChange={handleInputChange}
-            placeholder="extraaaaaaaaa"
-            className="standard-text"
-          />
-           <input type="submit" onClick={postListing}/>
-        </div>
-      );
+  return (
+    <div>
+      <input
+        type="text"
+        name="listing_title"
+        value={inputs.listing_title}
+        onChange={handleInputChange}
+        placeholder="Listing"
+        className="standard-text"
+      />
+      <input
+        type="text"
+        name="address"
+        value={inputs.address}
+        onChange={handleInputChange}
+        placeholder="Address"
+        className="standard-text"
+      />
+      <input
+        type="text"
+        name="property_sqft"
+        value={inputs.property_SqFt}
+        onChange={handleInputChange}
+        placeholder="Property SqFt"
+        className="standard-text"
+      />
+      <input
+        type="text"
+        name="lease_start_date"
+        value={inputs.lease_start_date}
+        onChange={handleInputChange}
+        placeholder="Lease Start Date"
+        className="standard-text"
+      />
+      <input
+        type="text"
+        name="location"
+        value={inputs.location}
+        onChange={handleInputChange}
+        placeholder="Location"
+        className="standard-text"
+      />
+      <input
+        type="text"
+        name="listing_price"
+        value={inputs.listing_price}
+        onChange={handleInputChange}
+        placeholder="Listing Price"
+        className="standard-text"
+      />
+      <input
+        type="text"
+        name="lease_end_date"
+        value={inputs.lease_end_date}
+        onChange={handleInputChange}
+        placeholder="Lease End Date"
+        className="standard-text"
+      />
+      <input
+        type="text"
+        name="description"
+        value={inputs.description}
+        onChange={handleInputChange}
+        placeholder="Property and Lease Description..."
+        className="standard-text"
+      />
+      <input
+        type="text"
+        name="contact_info"
+        value={inputs.contact_info}
+        onChange={handleInputChange}
+        placeholder="extraaaaaaaaa"
+        className="standard-text"
+      />
+        <input type="submit" onClick={postListing}/>
+    </div>
+  );
 }
 
 export default Listing
