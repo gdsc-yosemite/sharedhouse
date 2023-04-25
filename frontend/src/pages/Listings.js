@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import '../App.css';
 
 function Listings() {
-  const [listings, loadListings] = useState([]);
+  const listings = [];
+  const [ids, loadIds] = useState(new Set());
 
     /** initially load 50? listings */
     useEffect(() => {
@@ -11,23 +12,28 @@ function Listings() {
             headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
         }).then((response) => response.json())
           .then((json) => {
-            // json.map(element => {
-            //   listings.push(element);
-            // })
-            // loadListings(json); // THIS DOESNT WORK
-            console.log(listings);
+            const newSet = ids;
+            json.map(element => {
+              if (!newSet.has(element.id)) {
+                newSet.add(element.id)
+                listings.push(element);
+              }
+            })
+            loadIds(newSet);
+            console.log("listings", listings);
+            console.log("ids: ", ids);
           });
     })
 
     return (
       <div className="listings">
-        hi
+        <div>Listings</div>
         {
-          // listings.map((listing)=> (
-          //   <div class="listing">
-          //     <div class="listing-title">{listing.name}</div>
-          //   </div>
-          // ))
+          listings.map((listing)=> (
+            <div className="listing">
+              <div className="listing-title">{listing.name}</div>
+            </div>
+          ))
         }
       </div>
     );
