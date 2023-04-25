@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import '../App.css';
 
 function Listings() {
-  const listings = [];
+  /** All the listings */
+  const [listings, loadListings] = useState([]);
+  /** current listings */
+  const [filteredListings, setFiltered] = useState([]); 
+  /** Ids of all loaded listings */
   const [ids, loadIds] = useState(new Set());
 
     /** initially load 50? listings */
@@ -12,14 +16,13 @@ function Listings() {
             headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
         }).then((response) => response.json())
           .then((json) => {
-            const newSet = ids;
             json.map(element => {
-              if (!newSet.has(element.id)) {
-                newSet.add(element.id)
+              if (!ids.has(element.id)) {
+                ids.add(element.id)
                 listings.push(element);
               }
             })
-            loadIds(newSet);
+            setFiltered(listings)
             console.log("listings", listings);
             console.log("ids: ", ids);
           });
@@ -29,9 +32,18 @@ function Listings() {
       <div className="listings">
         <div>Listings</div>
         {
-          listings.map((listing)=> (
+          filteredListings.map((listing)=> (
             <div className="listing">
-              <div className="listing-title">{listing.name}</div>
+              <hr></hr>
+              <div className="listing-name">{listing.name}</div>
+              <div className="listing-address">{listing.address}</div>
+              <div className="listing-location">{listing.location}</div>
+              <div className="listing-sqft">{listing.sqft}</div>
+              <div className="listing-rate">{listing.rate}</div>
+              <div className="listing-start-date">{listing.start_date}</div>
+              <div className="listing-end-date">{listing.end_date}</div>
+              <div className="listing-description">{listing.description}</div>
+              <div className="listing-contact">{listing.contact}</div>
             </div>
           ))
         }
