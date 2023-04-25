@@ -29,7 +29,7 @@ module.exports = function(app, admin){
                 location: data.location,
                 sqft: data.property_sqft,
                 rate: data.listing_price,
-                start_date: data.property_sqft,
+                start_date: data.lease_start_date,
                 end_date: data.lease_end_date,
                 description: data.description,
                 contact: data.contact_info,
