@@ -8,10 +8,12 @@ function Listings() {
   const [filteredListings, setFiltered] = useState([]); 
   /** Ids of all loaded listings */
   const [ids, loadIds] = useState(new Set());
+  /** Number of listings currently loaded */
+  const [numListings, setNum] = useState(0);
 
     /** initially load 50? listings */
     useEffect(() => {
-        fetch('http://localhost:3001/firestore/listings', {
+        fetch('http://localhost:3001/firestore/listings/initial', {
             method: 'GET',
             headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
         }).then((response) => response.json())
@@ -22,11 +24,33 @@ function Listings() {
                 listings.push(element);
               }
             })
-            setFiltered(listings)
+            setFiltered(listings);
+            setNum(numListings => numListings + 50);
             console.log("listings", listings);
             console.log("ids: ", ids);
           });
     })
+
+    /** Load More Listings */
+    const loadMore = (event) => {
+      event.preventDefault();
+      fetch('http://localhost:3001/firestore/listings/more', {
+        method: 'GET',
+        headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
+    }).then((response) => response.json()) 
+      .then((json) => {
+        json.map(element => {
+          if (!ids.has(element.id)) {
+            ids.add(element.id)
+            listings.push(element);
+          }
+        })
+        setFiltered(listings);
+        setNum(numListings => numListings + 50);
+        console.log("listings", listings);
+        console.log("ids: ", ids);
+      });
+    }
 
     return (
       <div className="listings">
@@ -47,6 +71,7 @@ function Listings() {
             </div>
           ))
         }
+        <input type="submit" onClick={loadMore}/>
       </div>
     );
 }
