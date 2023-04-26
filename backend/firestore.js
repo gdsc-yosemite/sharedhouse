@@ -3,22 +3,22 @@ module.exports = function(app, admin){
 
     let db = admin.firestore();
 
-    app.get('/firestore/listings/initial', (req, res) => {
-        db.collection('listing').limit(50).get().then((snapshot) => {
-            const data = [];
-            snapshot.forEach((doc) => {
-                data.push({id: doc.id, ...doc.data() })
-                console.log(doc.id, '=>', doc.data());
-            });
-            res.send(data);
-        })
-        .catch((err) => {
-            console.error('Error getting documents', err);
-        });
-    })
+    // app.get('/firestore/listings/initial', (req, res) => {
+    //     db.collection('listing').limit(50).get().then((snapshot) => {
+    //         const data = [];
+    //         snapshot.forEach((doc) => {
+    //             data.push({id: doc.id, ...doc.data() })
+    //             console.log(doc.id, '=>', doc.data());
+    //         });
+    //         res.send(data);
+    //     })
+    //     .catch((err) => {
+    //         console.error('Error getting documents', err);
+    //     });
+    // })
 
-    app.get('/firestore/listings/more', (req, res) => {
-        db.collection('listing').startAfter(50).limit(50).get().then((snapshot) => {
+    app.get('/firestore/listings/load', (req, res) => {
+        db.collection('listing').limit(50).get().then((snapshot) => {
             const data = [];
             snapshot.forEach((doc) => {
                 data.push({id: doc.id, ...doc.data() })
