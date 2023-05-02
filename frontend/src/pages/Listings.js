@@ -11,9 +11,29 @@ function Listings() {
   /** Number of listings currently loaded */
   const [numListings, setNum] = useState(0);
 
+  function initListings() {
+    console.log(numListings); // TODO: FIX THIS LATER
+    fetch(`http://localhost:3001/firestore/listings/initial`, {
+      method: 'GET',
+      headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
+  }).then((response) => response.json())
+    .then((json) => {
+      json.map(element => {
+        if (!ids.has(element.id)) {
+          ids.add(element.id)
+          listings.push(element);
+        }
+      })
+      setNum(numListings => numListings + 50)
+      console.log("listings", listings);
+      console.log("ids: ", ids);
+    });
+  }
+
   function loadListings(numListings) {
-    console.log(numListings)
-    fetch('http://localhost:3001/firestore/listings/load', {
+    console.log(numListings); // TODO: FIX THIS LATER
+    const numlist = listings.length - 1;
+    fetch(`http://localhost:3001/firestore/listings/load?lastId=${listings[numlist].id}`, {
       method: 'GET',
       headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
   }).then((response) => response.json())
@@ -32,12 +52,13 @@ function Listings() {
 
     /** initially load 50? listings */
     useEffect(() => {
-      loadListings(numListings);
+      initListings();
     }, [])
 
     /** Load More Listings */
     const loadMore = (event) => {
       event.preventDefault();
+      loadListings(numListings);
     }
 
     return (

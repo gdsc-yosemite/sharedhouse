@@ -3,22 +3,28 @@ module.exports = function(app, admin){
 
     let db = admin.firestore();
 
-    // app.get('/firestore/listings/initial', (req, res) => {
-    //     db.collection('listing').limit(50).get().then((snapshot) => {
-    //         const data = [];
-    //         snapshot.forEach((doc) => {
-    //             data.push({id: doc.id, ...doc.data() })
-    //             console.log(doc.id, '=>', doc.data());
-    //         });
-    //         res.send(data);
-    //     })
-    //     .catch((err) => {
-    //         console.error('Error getting documents', err);
-    //     });
-    // })
+    app.get('/firestore/test', (req, res) => {
+        const lastId = req.query.lastId;
+        res.send({lastId});
+    })
 
-    app.get('/firestore/listings/load', (req, res) => {
-        db.collection('listing').limit(50).get().then((snapshot) => {
+    app.get('/firestore/listings/initial', (req, res) => {
+        db.collection('listing').orderBy('_createdAt').limit(10).get().then((snapshot) => {
+            const data = [];
+            snapshot.forEach((doc) => {
+                data.push({id: doc.id, ...doc.data() })
+                console.log(doc.id, '=>', doc.data());
+            });
+            res.send(data);
+        })
+        .catch((err) => {
+            console.error('Error getting documents', err);
+        });
+    })
+
+    app.get(`/firestore/listings/load`, (req, res) => {
+        const lastId = req.query.lastId;
+        db.collection('listing').orderBy('_createdAt').orderBy('id').startAfter(lastId).limit(10).get().then((snapshot) => {
             const data = [];
             snapshot.forEach((doc) => {
                 data.push({id: doc.id, ...doc.data() })
@@ -47,6 +53,7 @@ module.exports = function(app, admin){
                 end_date: data.lease_end_date,
                 description: data.description,
                 contact: data.contact_info,
+                _createdAt: admin.firestore.FieldValue.serverTimestamp(),
             }).then((docRef) => {
                 console.log("Docment written with ID: ", docRef.id);
             }).catch((error) => {
