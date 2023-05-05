@@ -108,7 +108,7 @@ function Listing() {
             value={inputs.room_or_appt_num}
             onChange={handleInputChange}
             placeholder="Room/Apt #"
-            className="standard-text"
+            className="room-apt"
           />
           <input
             type="text"
