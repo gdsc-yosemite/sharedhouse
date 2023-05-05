@@ -2,7 +2,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Listing from './pages/Listing';
+import Post from './pages/Post';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/listing" element={<Listing />} />
+          <Route path="/Post" element={<Post />} />
         </Routes>
       </BrowserRouter>
     </div>
