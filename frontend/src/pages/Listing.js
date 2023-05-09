@@ -1,20 +1,40 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 import '../App.css';
 import './Listing.css';
 
 function Listing() {
+  const auth = getAuth();
+  const navigate = useNavigate();
+  const [currentUser, setUser] = useState();
   const [inputs, setInputs] = useState({
     listing_title: "",
     address: "",
-    property_sqft: 0,
+    property_sqft: null,
     lease_start_date: "",
     location: "",
-    listing_price: 0,
+    listing_price: null,
     lease_end_date: "",
     description: "",
     contact_info: "",
   });
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user.uid);
+        console.log("uid", currentUser)
+      } else {
+        setUser(null);
+        alert("Please login before posting");
+        navigate("/login")
+        console.log("user is logged out")
+      }
+    });
+  })
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -29,7 +49,8 @@ function Listing() {
     console.log("hi", inputs);
     var data = {
       type: 'listing',
-      data: inputs
+      data: inputs,
+      curUser: currentUser
     }
     fetch('http://localhost:3001/firestore', {
             method: 'POST',

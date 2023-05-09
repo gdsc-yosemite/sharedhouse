@@ -1,4 +1,6 @@
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
+import { onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
@@ -14,7 +16,22 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
+
 function Login() {
+  const [currentUser, setUser] = useState();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        console.log("uid", currentUser)
+      } else {
+        setUser(null);
+        console.log("user is logged out")
+      }
+    });
+  })
+
   function displayRegistration() {
     document.getElementById("registration_form").style.display = "block";
     document.getElementById("login_form").style.display = "none";

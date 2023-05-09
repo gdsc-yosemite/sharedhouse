@@ -2,6 +2,7 @@
 module.exports = function(app, admin){
 
     let db = admin.firestore();
+    const auth = admin.auth();
 
     app.get('/firestore/listings', (req, res) => {
         db.collection('listing').get().then((snapshot) => {
@@ -19,6 +20,7 @@ module.exports = function(app, admin){
 
     app.post('/firestore', (req, res) => {
         const type = req.body.type
+        const user = req.body.curUser
         console.log('type', type);
         const data = req.body.data
         res.send({ message: type })
@@ -33,6 +35,7 @@ module.exports = function(app, admin){
                 end_date: data.lease_end_date,
                 description: data.description,
                 contact: data.contact_info,
+                _userId: user,
             }).then((docRef) => {
                 console.log("Docment written with ID: ", docRef.id);
             }).catch((error) => {
