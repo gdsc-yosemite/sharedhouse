@@ -26,7 +26,7 @@ function Listings() {
             console.log("listings", listings);
             console.log("ids: ", ids);
           });
-    })
+    }, [])
 
     return (
       <div className="listings">
@@ -38,12 +38,9 @@ function Listings() {
               <div className="listing-name">{listing.name}</div>
               <div className="listing-address">{listing.address}</div>
               <div className="listing-location">{listing.location}</div>
-              <div className="listing-sqft">{listing.sqft}</div>
               <div className="listing-rate">{listing.rate}</div>
               <div className="listing-start-date">{listing.start_date}</div>
               <div className="listing-end-date">{listing.end_date}</div>
-              <div className="listing-description">{listing.description}</div>
-              <div className="listing-contact">{listing.contact}</div>
             </div>
           ))
         }
