@@ -18,7 +18,13 @@ function Listing() {
     description: "",
   });
   
-  const [selectedOption, setSelectedOption] = useState("");
+
+  const [selectedPropertyType, setSelectedPropertyType] = useState("");
+  const [selectedListingType, setSelectedListingType] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedBedroom, setSelectedBedroom] = useState("");
+  const [selectedBathroom, setSelectedBathroom] = useState("");
+  const [selectedParking, setSelectedParking] = useState("");
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -28,8 +34,28 @@ function Listing() {
     }));
   };
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+  const handlePropertyTypeChange = (event) => {
+    setSelectedPropertyType(event.target.value);
+  };
+
+  const handleListingTypeChange = (event) => {
+    setSelectedListingType(event.target.value);
+  };
+
+  const handleStateChange = (event) => {
+    setSelectedState(event.target.value);
+  };
+
+  const handleBedroomChange = (event) => {
+    setSelectedBedroom(event.target.value);
+  };
+
+  const handleBathroomChange = (event) => {
+    setSelectedBathroom(event.target.value);
+  };
+
+  const handleParkingChange = (event) => {
+    setSelectedParking(event.target.value);
   };
 
   const postListing = (event) => {
@@ -55,8 +81,13 @@ function Listing() {
             console.log(json)
           });
   }
+
+
       return (
         <div class="property_info-container">
+          <div class="property_info_heading">
+            Property Type
+          </div>
           <div className="row">
             <input
               type="text"
@@ -67,7 +98,7 @@ function Listing() {
               className="standard-text"
             />
             <div>
-              <select className="my-dropdown" id="property type" value={selectedOption} onChange={handleOptionChange}>
+              <select className="my-dropdown" id="property type" value={selectedPropertyType} onChange={handlePropertyTypeChange}>
                 <option value="">Property Type</option>
                 <option value="Option 1">Appartment</option>
                 <option value="Option 2">House</option>
@@ -77,7 +108,7 @@ function Listing() {
           </div>
           <div className="row">
             <div>
-              <select className="my-dropdown" id="listing type" value={selectedOption} onChange={handleOptionChange}>
+              <select className="my-dropdown" id="listing type" value={selectedListingType} onChange={handleListingTypeChange}>
                 <option value="">Listing Type</option>
                 <option value="Option 1">Sub-Lease</option>
                 <option value="Option 2">Lease Transfer</option>
@@ -108,7 +139,7 @@ function Listing() {
             value={inputs.room_or_appt_num}
             onChange={handleInputChange}
             placeholder="Room/Apt #"
-            className="standard-text"
+            className="room-apt"
           />
           <input
             type="text"
@@ -119,7 +150,7 @@ function Listing() {
             className="standard-text"
           />
           <div>
-              <select className="my-dropdown" id="state" value={selectedOption} onChange={handleOptionChange}>
+              <select className="state" id="state" value={selectedState} onChange={handleStateChange}>
                 <option value="">State</option>
                 <option value="Option 1">CA</option>
                 <option value="Option 2">Put all other later</option>
@@ -139,7 +170,7 @@ function Listing() {
           </div>
           <div className="row">
             <div>
-              <select className="my-dropdown" id="bedroom" value={selectedOption} onChange={handleOptionChange}>
+              <select className="my-dropdown" id="bedroom" value={selectedBedroom} onChange={handleBedroomChange}>
                 <option value="">Bedrooms</option>
                 <option value="Option 1">1</option>
                 <option value="Option 2">2</option>
@@ -151,7 +182,7 @@ function Listing() {
               <br />
             </div>
             <div>
-              <select className="my-dropdown" id="bathroom" value={selectedOption} onChange={handleOptionChange}>
+              <select className="my-dropdown" id="bathroom" value={selectedBathroom} onChange={handleBathroomChange}>
                 <option value="">Bathrooms</option>
                 <option value="Option 1">1</option>
                 <option value="Option 2">2</option>
@@ -173,7 +204,7 @@ function Listing() {
             className="standard-text"
           />
           <div>
-              <select className="my-dropdown" id="parking" value={selectedOption} onChange={handleOptionChange}>
+              <select className="my-dropdown" id="parking" value={selectedParking} onChange={handleParkingChange}>
                 <option value="">Parking</option>
                 <option value="Option 1">Yes</option>
                 <option value="Option 2">No</option>
@@ -211,7 +242,6 @@ function Listing() {
           </div>
            <input type="submit" onClick={postListing}/>
         </div>
-        
       );
 }
 
