@@ -6,6 +6,7 @@ import Listing from './pages/Listing';
 import Listings from './pages/Listings';
 import Login from './pages/Login';
 import MyListings from './pages/MyListings';
+import Post from './pages/Post';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/listings" element={<Listings />} />
           <Route path="/login" element={<Login />} />
           <Route path="/mylistings" element={<MyListings />} />
+          <Route path="/Post" element={<Post />} />
         </Routes>
       </BrowserRouter>
     </div>
