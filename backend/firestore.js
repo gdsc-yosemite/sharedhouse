@@ -63,6 +63,7 @@ module.exports = function(app, admin){
                 contact: data.contact_info,
                 _createdAt: admin.firestore.FieldValue.serverTimestamp(),
                 _userId: user,
+                images: req.body.images,
             }).then((docRef) => {
                 console.log("Docment written with ID: ", docRef.id);
             }).catch((error) => {
