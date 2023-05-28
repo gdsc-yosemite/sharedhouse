@@ -81,8 +81,13 @@ function Listing() {
             console.log(json)
           });
   }
+
+
       return (
         <div class="property_info-container">
+          <div class="property_info_heading">
+            Property Type
+          </div>
           <div className="row">
             <input
               type="text"

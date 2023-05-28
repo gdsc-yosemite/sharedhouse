@@ -4,6 +4,11 @@ body { /*color of the body of the webpage*/
   background-color: #d6e0f8; /* Replace with your desired color */
 }
 
+.information {
+  display: flex;
+  justify-content: space-between;
+}
+
 .standard-text {
     display: block;
     margin-bottom: 10px;
@@ -12,18 +17,18 @@ body { /*color of the body of the webpage*/
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .room-apt {
     display: block;
     margin-bottom: 10px;
     padding: 10px;
-    width: 25px;
+    width: 20px;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
+    font-size: 12px;
   }
 
 .description {
@@ -35,7 +40,7 @@ body { /*color of the body of the webpage*/
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
+    font-size: 12px;
     text-align: left;
     text-indent: 5px;
     line-height: 20px;
@@ -43,14 +48,14 @@ body { /*color of the body of the webpage*/
 
 .my-dropdown {
   display: block;
-  margin-bottom: 3px;
-  padding: 5px;
+  margin-bottom: -2px;
+  padding: 0px;
   width: 200px;
   height: 30px;
   border: 1px solid rgb(128, 128, 128);
   border-radius: 4px;
   background-color: #fff;
-  font-size: 16px;
+  font-size: 12px;
   margin-right: 10px;
 }
 
@@ -59,9 +64,18 @@ body { /*color of the body of the webpage*/
     flex-direction: column; /* Each row will be placed vertically */
     justify-content: center;
     align-items: center; /* Align the rows to center */
-    gap: 20px
+    gap: 1px;
   }
   
+  .property_info_heading{
+    display: flex;
+    flex-direction: column; /* Each row will be placed vertically */
+    justify-content: left;
+    align-items: left; /* Align the rows to center */
+    gap: 1px;
+    font-size: 36px;
+  }
+
   .property_info-container > div {
     display: flex;
     flex-direction: row; /* Each group of textboxes in a row will be placed horizontally */
@@ -80,13 +94,13 @@ body { /*color of the body of the webpage*/
 
   .state {
     display: block;
-    margin-bottom: 3px;
+    margin-bottom: -2px;
     padding: 5px;
     width: 200px;
     height: 30px;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 4px;
     background-color: #fff;
-    font-size: 16px;
+    font-size: 12px;
     margin-right: 10px;
   }
