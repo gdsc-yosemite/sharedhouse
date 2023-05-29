@@ -123,40 +123,53 @@ const firebaseConfig = {
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    // Check if all input fields and dropdowns are filled/selected
-    const isFormValid =
-      inputs.first_name !== "" &&
-      inputs.last_name !== "" &&
-      inputs.contact !== "" &&
-      inputs.display_name !== "" &&
-      inputs.listing_title !== "" &&
-      inputs.listing_price !== "" &&
-      inputs.address !== "" &&
-      inputs.room_or_appt_num !== "" &&
-      inputs.city !== "" &&
-      inputs.zip !== "" &&
-      inputs.property_sqft !== "" &&
-      inputs.lease_start_date !== "" &&
-      inputs.location !== "" &&
-      inputs.lease_end_date !== "" &&
-      inputs.description !== "" &&
-      selectedPropertyType !== "" &&
-      selectedListingType !== "" &&
-      selectedState !== "" &&
-      selectedBedroom !== "" &&
-      selectedBathroom !== "" &&
-      selectedParking !== "";
+  const isFormValid =
+    inputs.first_name !== "" &&
+    inputs.last_name !== "" &&
+    inputs.contact !== "" &&
+    inputs.display_name !== "" &&
+    inputs.listing_title !== "" &&
+    inputs.listing_price !== "" &&
+    inputs.address !== "" &&
+    inputs.room_or_appt_num !== "" &&
+    inputs.city !== "" &&
+    inputs.zip !== "" &&
+    inputs.property_sqft !== "" &&
+    inputs.lease_start_date !== "" &&
+    inputs.location !== "" &&
+    inputs.lease_end_date !== "" &&
+    inputs.description !== "" &&
+    selectedPropertyType !== "" &&
+    selectedListingType !== "" &&
+    selectedState !== "" &&
+    selectedBedroom !== "" &&
+    selectedBathroom !== "" &&
+    selectedParking !== "";
 
-    setIsFormValid(isFormValid);
-  }, [
-    inputs,
-    selectedPropertyType,
-    selectedListingType,
-    selectedState,
-    selectedBedroom,
-    selectedBathroom,
-    selectedParking,
-  ]);
+setIsFormValid(isFormValid);
+}, [
+  inputs.first_name,
+  inputs.last_name,
+  inputs.contact,
+  inputs.display_name,
+  inputs.listing_title,
+  inputs.listing_price,
+  inputs.address,
+  inputs.room_or_appt_num,
+  inputs.city,
+  inputs.zip,
+  inputs.property_sqft,
+  inputs.lease_start_date,
+  inputs.location,
+  inputs.lease_end_date,
+  inputs.description,
+  selectedPropertyType,
+  selectedListingType,
+  selectedState,
+  selectedBedroom,
+  selectedBathroom,
+  selectedParking,
+]);
 
   const handleInfoChange = (event) => {
     const { name, value } = event.target;
@@ -213,6 +226,9 @@ const firebaseConfig = {
 
   return (
     <div>
+      <div className="title">
+        Post Your Property
+      </div>
       <div className="client_info-containter">
         <div className="client_info_heading">
           Client Info
