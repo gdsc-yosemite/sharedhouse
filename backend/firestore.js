@@ -49,7 +49,9 @@ module.exports = function(app, admin){
         const user = req.body.curUser
         console.log('type', type);
         const data = req.body.data
+        console.log('images', req.body.images);
         res.send({ message: type })
+        let id = '';
         if (type == 'listing') {
             db.collection(type).add({
                 name: data.listing_title,
@@ -66,10 +68,31 @@ module.exports = function(app, admin){
                 images: req.body.images,
             }).then((docRef) => {
                 console.log("Docment written with ID: ", docRef.id);
+                id = docRef.id
+                docRef.update({
+                    _id: id
+                })
             }).catch((error) => {
                 console.error("error adding document: ", error);
             })
         }
+    })
+
+    app.get('/firestore/detail', (req, res) => {
+        const id = req.query.id;
+        var docRef = db.collection('listing').doc(`${id}`);
+
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                res.send(doc.data());
+            } else {
+                doc.data() // will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        }); 
     })
 
 }
