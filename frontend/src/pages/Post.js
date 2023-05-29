@@ -25,8 +25,8 @@ const firebaseConfig = {
   const storage =getStorage(app);
 
   function Post() {
+    const navigate = useNavigate();
     const auth = getAuth();
-  const navigate = useNavigate();
   const [currentUser, setUser] = useState();
   const [images, setImage] = useState([]);
   const [imageUrls, setImages] = useState([]);
@@ -196,7 +196,15 @@ const firebaseConfig = {
       type: 'listing',
       data: inputs,
       curUser: currentUser,
-      images: imageUrls
+      images: imageUrls,
+      select: {
+        property_type : selectedPropertyType ,
+        listing_type : selectedListingType ,
+        state : selectedState ,
+        bedroom : selectedBedroom ,
+        bathroom : selectedBathroom ,
+        parking : selectedParking
+      }
     }
     console.log("img :( ", imageUrls);
     console.log("hi", data);
@@ -207,6 +215,7 @@ const firebaseConfig = {
     }).then((response) => response.json())
       .then((json) => {
         console.log(json)
+        navigate('/mylistings');
       });
   }
 
