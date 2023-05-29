@@ -91,7 +91,7 @@ const firebaseConfig = {
         }
       ); 
     }
-    imageUrls = tempUrls
+    imageUrls = tempUrls;
     console.log("temp urls: ", tempUrls);
     setUpload(true);
     console.log("image urls: ", imageUrls);
@@ -162,7 +162,7 @@ const firebaseConfig = {
       curUser: currentUser,
       images: imageUrls
     }
-    fetch('http://localhost:3001/firestore', {
+    fetch('http://localhost:3001/firestorev1', {
             method: 'POST',
             headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
             body: JSON.stringify(data)

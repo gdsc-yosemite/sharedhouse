@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import '../App.css';
 
 function Listings() {
+  const navigate = useNavigate();
   /** All the listings */
   const [listings, loadListings] = useState([]);
   /** current listings */
   const [filteredListings, setFiltered] = useState([]); 
   /** Ids of all loaded listings */
   const [ids, loadIds] = useState(new Set());
+
+  function reroute(id) {
+    navigate(`/detail?id=${id}`);
+  }
 
     /** initially load 50? listings */
     useEffect(() => {
@@ -41,6 +47,7 @@ function Listings() {
               <div className="listing-rate">{listing.rate}</div>
               <div className="listing-start-date">{listing.start_date}</div>
               <div className="listing-end-date">{listing.end_date}</div>
+              <button onClick={() => reroute(listing.id)}>More info</button>
             </div>
           ))
         }

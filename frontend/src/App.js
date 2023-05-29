@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Detail from './pages/Detail';
 import Listings from './pages/Listings';
+import Listing from './pages/Listing';
 import Login from './pages/Login';
 import Post from './pages/Post';
 import MyListings from './pages/MyListings';
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/post" element={<Post />} />
           <Route path="/mylistings" element={<MyListings />} />
+          <Route path="/listing" element={<Listing />} />
         </Routes>
       </BrowserRouter>
     </div>

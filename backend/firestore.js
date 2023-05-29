@@ -72,4 +72,31 @@ module.exports = function(app, admin){
         }
     })
 
+    app.post('/firestorev1', (req, res) => {
+        const type = req.body.type
+        const user = req.body.curUser
+        console.log('type', type);
+        const data = req.body.data
+        res.send({ message: type })
+        if (type == 'listing') {
+            db.collection(type).add({
+                name: data.listing_title,
+                address: data.address,
+                location: data.location,
+                sqft: data.property_sqft,
+                rate: data.listing_price,
+                start_date: data.lease_start_date,
+                end_date: data.lease_end_date,
+                description: data.description,
+                _createdAt: admin.firestore.FieldValue.serverTimestamp(),
+                _userId: user,
+                images: req.body.images,
+            }).then((docRef) => {
+                console.log("Docment written with ID: ", docRef.id);
+            }).catch((error) => {
+                console.error("error adding document: ", error);
+            })
+        }
+    })
+
 }
