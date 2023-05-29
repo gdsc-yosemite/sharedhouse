@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import '../App.css';
 import '../css_pages/Post.css';
+import checkmark from '../assets/checkmark.png';
 
 /** Firebase storage (for image upload) */
 import { initializeApp } from 'firebase/app';
@@ -27,8 +28,8 @@ const firebaseConfig = {
     const auth = getAuth();
   const navigate = useNavigate();
   const [currentUser, setUser] = useState();
-    const [images, setImage] = useState([]);
-  let imageUrls = [];
+  const [images, setImage] = useState([]);
+  const [imageUrls, setImages] = useState([]);
   const [uploaded, setUpload] = useState(false);
 
   useEffect(() => {
@@ -54,6 +55,7 @@ const firebaseConfig = {
   };
 
   function handleImageChange(event) {
+    document.getElementById("checkmark").style.visibility = 'hidden';
     let new_files = event.target.files;
     console.log("new files: ", new_files);
     for (let i = 0; i < new_files.length; i++) {
@@ -63,10 +65,6 @@ const firebaseConfig = {
   }
 
   function handleUpload() {
-    /** TODO: can't delete images */
-    let tempUrls = []; // empty array
-    tempUrls.length = 0;
-
     if (!images) {
       alert("Please upload an image!");
     }
@@ -85,15 +83,14 @@ const firebaseConfig = {
         () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          tempUrls.push(url);
+          imageUrls.push(url);
           console.log(url);
         });
         }
       ); 
     }
-    imageUrls = tempUrls
-    console.log("temp urls: ", tempUrls);
     setUpload(true);
+    document.getElementById("checkmark").style.visibility = 'visible';
     console.log("image urls: ", imageUrls);
   }
 
@@ -195,13 +192,14 @@ const firebaseConfig = {
 
   const postListing = (event) => {
     event.preventDefault();
-    console.log("hi", inputs);
     var data = {
       type: 'listing',
       data: inputs,
       curUser: currentUser,
       images: imageUrls
     }
+    console.log("img :( ", imageUrls);
+    console.log("hi", data);
     fetch('http://localhost:3001/firestore', {
       method: 'POST',
       headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
@@ -432,6 +430,7 @@ const firebaseConfig = {
       <div>
             <input type="file" accept="image/*" onChange={handleImageChange} name="files[]" multiple/>
             <button onClick={handleUpload}>Upload</button>
+            <img id="checkmark" alt="updated" src={checkmark}/>
           </div>
 
       <div>

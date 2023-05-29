@@ -149,3 +149,9 @@ body { /*color of the body of the webpage*/
   gap: 75px;
   margin-bottom: 10px;
 }
+
+#checkmark {
+  height: 15px;
+  visibility: hidden;
+  margin-left: 5px;
+}

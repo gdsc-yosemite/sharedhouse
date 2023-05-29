@@ -1,78 +1,46 @@
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+import queryString from 'query-string';
 import '../App.css';
 import '../css_pages/Detail.css';
 
 function Detail() {
-  const auth = getAuth();
-  const navigate = useNavigate();
-  const [currentUser, setUser] = useState();
-  const [inputs, setInputs] = useState({
-    listing_title: "",
-    address: "",
-    property_sqft: null,
-    lease_start_date: "",
-    location: "",
-    listing_price: null,
-    lease_end_date: "",
-    description: "",
-    contact_info: "",
-  });
+  /** All the listings */
+  const location = useLocation();
+  const [listing, loadListing] = useState([]);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user.uid);
-        console.log("uid", currentUser)
-      } else {
-        setUser(null);
-        alert("Please login before posting");
-        navigate("/login")
-        console.log("user is logged out")
-      }
-    });
-  })
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setInputs((prevInputs) => ({
-      ...prevInputs,
-      [name]: value,
-    }));
-  };
-
-  const postListing = (event) => {
-    event.preventDefault();
-    console.log("hi", inputs);
-    var data = {
-      type: 'listing',
-      data: inputs,
-      curUser: currentUser
-    }
-    fetch('http://localhost:3001/firestore', {
-            method: 'POST',
+    /** initially load 50? listings */
+    useEffect(() => {
+      const url = new URL(window.location.href);
+        const queryParams = new URLSearchParams(url.search);
+        fetch(`http://localhost:3001/firestore/detail?id=${queryParams.get('id')}`, {
+            method: 'GET',
             headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
-            body: JSON.stringify(data)
-        // }).then(response => {
-        //   console.log(response.text())
-        //   if(response.ok) {
-        //     return response.json();
-        //   } else {
-        //     throw new Error ('Someting went wrong...')
-        //   }
         }).then((response) => response.json())
           .then((json) => {
-            console.log(json)
+
           });
-  }
-  return (
-    <div>
-      detail
-    </div>
-  );
+    }, [])
+
+    return (
+      <div className="details">
+        <div>More Information:</div>
+        {
+          <div className="listing">
+            <hr></hr>
+            <div className="listing-name">{listing.name}</div>
+            <div className="listing-address">{listing.address}</div>
+            <div className="listing-location">{listing.location}</div>
+            <div className="listing-rate">{listing.rate}</div>
+            <div className="listing-start-date">{listing.start_date}</div>
+            <div className="listing-end-date">{listing.end_date}</div>
+          </div>
+        }
+      </div>
+    );
 }
 
 export default Detail
