@@ -310,7 +310,7 @@ const firebaseConfig = {
               value={inputs.address}
               onChange={handleInputChange}
               placeholder="Address"
-              className="standard-text"
+              className="address"
             />
             <input
               type="text"
@@ -320,16 +320,16 @@ const firebaseConfig = {
               placeholder="Room/Apt #"
               className="room-apt"
             />
+          </div>
+          <div className="sub_row2">
             <input
               type="text"
               name="city"
               value={inputs.city}
               onChange={handleInputChange}
               placeholder="City"
-              className="standard-text"
+              className="city"
             />
-          </div>
-          <div className="sub_row2">
             <select className="state" id="state" value={selectedState} onChange={handleStateChange}>
               <option value="">State</option>
               <option value="CA">CA</option>
@@ -342,7 +342,7 @@ const firebaseConfig = {
               value={inputs.zip}
               onChange={handleInputChange}
               placeholder="ZIP"
-              className="standard-text"
+              className="zip"
               pattern="[0-9]*"
               inputMode="numeric"
               onKeyPress={(event) => {
