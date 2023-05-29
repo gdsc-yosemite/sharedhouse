@@ -55,6 +55,7 @@ function MyListings() {
         }).then((response) => response.json())
           .then((json) => {
             console.log(json)
+            window.location.reload()
         });
     }
 
@@ -66,13 +67,27 @@ function MyListings() {
             <div className="listing">
                 <hr></hr>
                 <div className="listing-name">{listing.name}</div>
+
                 <div className="listing-address">{listing.address}</div>
-                <div className="listing-location">{listing.location}</div>
-                <div className="listing-sqft">{listing.sqft}</div>
-                <div className="listing-rate">{listing.rate}</div>
+                <div className="listing-room-appt-num">{listing.room_appt_num}</div>
+                <div className="listing-city">{listing.city}</div>
+                <div className="listing-state">{listing.state}</div>
+                <div className="listing-zip">{listing.zip}</div>
+
                 <div className="listing-start-date">{listing.start_date}</div>
                 <div className="listing-end-date">{listing.end_date}</div>
-                <div className="listing-description">{listing.description}</div>
+
+                <div className="listing-rate">{listing.rate}</div>
+                <div className="listing-sqft">{listing.sqft}</div>
+
+                <div className="listing-property-type">{listing.property_type}</div>
+                <div className="listing-type">{listing.listing_type}</div>
+
+                <div className="listing-bedroom">{listing.bedroom}</div>
+                <div className="listing-bathroom">{listing.bathroom}</div>
+                <div className="listing-parking">{listing.parking}</div>
+
+                <div className="listing-display-name">{listing.display_name}</div>
                 <div className="listing-contact">{listing.contact}</div>
 
                 <button onClick={() => delListing(listing.id)}>Delete</button>
