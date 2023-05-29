@@ -99,8 +99,8 @@ function Listing() {
             />
             <div>
               <select className="my-dropdown" id="property type" value={selectedPropertyType} onChange={handlePropertyTypeChange}>
-                <option value="">Property Type</option>
-                <option value="Option 1">Appartment</option>
+                <option value="placeholder" diabled default>Property Type</option>
+                <option value="Option 1">Apartment</option>
                 <option value="Option 2">House</option>
               </select>
               <br />
@@ -109,7 +109,7 @@ function Listing() {
           <div className="row">
             <div>
               <select className="my-dropdown" id="listing type" value={selectedListingType} onChange={handleListingTypeChange}>
-                <option value="">Listing Type</option>
+                <option value="placeholder" diabled default>Listing Type</option>
                 <option value="Option 1">Sub-Lease</option>
                 <option value="Option 2">Lease Transfer</option>
               </select>
@@ -151,7 +151,7 @@ function Listing() {
           />
           <div>
               <select className="state" id="state" value={selectedState} onChange={handleStateChange}>
-                <option value="">State</option>
+                <option value="placeholder" diabled default>State</option>
                 <option value="Option 1">CA</option>
                 <option value="Option 2">Put all other later</option>
               </select>
@@ -171,7 +171,7 @@ function Listing() {
           <div className="row">
             <div>
               <select className="my-dropdown" id="bedroom" value={selectedBedroom} onChange={handleBedroomChange}>
-                <option value="">Bedrooms</option>
+                <option value="placeholder" diabled default>Bedrooms</option>
                 <option value="Option 1">1</option>
                 <option value="Option 2">2</option>
                 <option value="Option 3">3</option>
@@ -183,7 +183,7 @@ function Listing() {
             </div>
             <div>
               <select className="my-dropdown" id="bathroom" value={selectedBathroom} onChange={handleBathroomChange}>
-                <option value="">Bathrooms</option>
+                <option value="placeholder" diabled default>Bathrooms</option>
                 <option value="Option 1">1</option>
                 <option value="Option 2">2</option>
                 <option value="Option 3">3</option>
@@ -205,7 +205,7 @@ function Listing() {
           />
           <div>
               <select className="my-dropdown" id="parking" value={selectedParking} onChange={handleParkingChange}>
-                <option value="">Parking</option>
+                <option value="placeholder" diabled default>Parking</option>
                 <option value="Option 1">Yes</option>
                 <option value="Option 2">No</option>
               </select>
