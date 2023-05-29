@@ -28,14 +28,8 @@ const firebaseConfig = {
   const navigate = useNavigate();
   const [currentUser, setUser] = useState();
     const [images, setImage] = useState([]);
-    const [imageUrls, addImage] = useState([]);
-
-  function handleImageChange(event) {
-    let new_files = event.target.files;
-    for (let i = 0; i < new_files.length; i++) {
-      images.push(new_files[i]);
-    }
-  }
+  let imageUrls = [];
+  const [uploaded, setUpload] = useState(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -59,7 +53,20 @@ const firebaseConfig = {
     }));
   };
 
+  function handleImageChange(event) {
+    let new_files = event.target.files;
+    console.log("new files: ", new_files);
+    for (let i = 0; i < new_files.length; i++) {
+      images.push(new_files[i]);
+    }
+    setUpload(false);
+  }
+
   function handleUpload() {
+    /** TODO: can't delete images */
+    let tempUrls = []; // empty array
+    tempUrls.length = 0;
+
     if (!images) {
       alert("Please upload an image!");
     }
@@ -78,12 +85,16 @@ const firebaseConfig = {
         () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          imageUrls.push(url);
+          tempUrls.push(url);
           console.log(url);
         });
         }
       ); 
     }
+    imageUrls = tempUrls
+    console.log("temp urls: ", tempUrls);
+    setUpload(true);
+    console.log("image urls: ", imageUrls);
   }
 
 /** Listing information */
