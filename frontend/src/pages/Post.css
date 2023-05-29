@@ -81,16 +81,10 @@ body { /*color of the body of the webpage*/
   .property_info_heading{
     display: flex;
     flex-direction: column; /* Each row will be placed vertically */
-<<<<<<< HEAD
     justify-content: left;
     align-items: left; /* Align the rows to center */
     gap: 1px;
     font-size: 36px;
-=======
-    justify-content: center;
-    align-items: center; /* Align the rows to center */
-    gap: 20px
->>>>>>> 9bf418e (Continued Flexbox layout... what even is design at this point ahhhhhhhhhhh)
   }
 
   .client_info_heading{
