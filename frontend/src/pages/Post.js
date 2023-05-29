@@ -97,7 +97,13 @@ const firebaseConfig = {
     description: "",
   });
   
-  const [selectedOption, setSelectedOption] = useState("");
+
+  const [selectedPropertyType, setSelectedPropertyType] = useState("");
+  const [selectedListingType, setSelectedListingType] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedBedroom, setSelectedBedroom] = useState("");
+  const [selectedBathroom, setSelectedBathroom] = useState("");
+  const [selectedParking, setSelectedParking] = useState("");
 
   const handleInfoChange = (event) => {
     const { name, value } = event.target;
@@ -107,8 +113,28 @@ const firebaseConfig = {
     }));
   };
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+  const handlePropertyTypeChange = (event) => {
+    setSelectedPropertyType(event.target.value);
+  };
+
+  const handleListingTypeChange = (event) => {
+    setSelectedListingType(event.target.value);
+  };
+
+  const handleStateChange = (event) => {
+    setSelectedState(event.target.value);
+  };
+
+  const handleBedroomChange = (event) => {
+    setSelectedBedroom(event.target.value);
+  };
+
+  const handleBathroomChange = (event) => {
+    setSelectedBathroom(event.target.value);
+  };
+
+  const handleParkingChange = (event) => {
+    setSelectedParking(event.target.value);
   };
 
   const postListing = (event) => {
@@ -136,8 +162,13 @@ const firebaseConfig = {
             console.log(json)
           });
   }
+
+
       return (
         <div class="property_info-container">
+          <div class="property_info_heading">
+            Property Typeixe
+          </div>
           <div className="row">
             <input
               type="text"
@@ -148,9 +179,9 @@ const firebaseConfig = {
               className="standard-text"
             />
             <div>
-              <select className="my-dropdown" id="property type" value={selectedOption} onChange={handleOptionChange}>
-                <option value="">Property Type</option>
-                <option value="Option 1">Appartment</option>
+              <select className="my-dropdown" id="property type" value={selectedPropertyType} onChange={handlePropertyTypeChange}>
+                <option value="placeholder" diabled default>Property Type</option>
+                <option value="Option 1">Apartment</option>
                 <option value="Option 2">House</option>
               </select>
               <br />
@@ -158,8 +189,8 @@ const firebaseConfig = {
           </div>
           <div className="row">
             <div>
-              <select className="my-dropdown" id="listing type" value={selectedOption} onChange={handleOptionChange}>
-                <option value="">Listing Type</option>
+              <select className="my-dropdown" id="listing type" value={selectedListingType} onChange={handleListingTypeChange}>
+                <option value="placeholder" diabled default>Listing Type</option>
                 <option value="Option 1">Sub-Lease</option>
                 <option value="Option 2">Lease Transfer</option>
               </select>
@@ -189,7 +220,7 @@ const firebaseConfig = {
             value={inputs.room_or_appt_num}
             onChange={handleInfoChange}
             placeholder="Room/Apt #"
-            className="standard-text"
+            className="room-apt"
           />
           <input
             type="text"
@@ -200,8 +231,8 @@ const firebaseConfig = {
             className="standard-text"
           />
           <div>
-              <select className="my-dropdown" id="state" value={selectedOption} onChange={handleOptionChange}>
-                <option value="">State</option>
+              <select className="state" id="state" value={selectedState} onChange={handleStateChange}>
+                <option value="placeholder" diabled default>State</option>
                 <option value="Option 1">CA</option>
                 <option value="Option 2">Put all other later</option>
               </select>
@@ -220,8 +251,8 @@ const firebaseConfig = {
           </div>
           <div className="row">
             <div>
-              <select className="my-dropdown" id="bedroom" value={selectedOption} onChange={handleOptionChange}>
-                <option value="">Bedrooms</option>
+              <select className="my-dropdown" id="bedroom" value={selectedBedroom} onChange={handleBedroomChange}>
+                <option value="placeholder" diabled default>Bedrooms</option>
                 <option value="Option 1">1</option>
                 <option value="Option 2">2</option>
                 <option value="Option 3">3</option>
@@ -232,8 +263,8 @@ const firebaseConfig = {
               <br />
             </div>
             <div>
-              <select className="my-dropdown" id="bathroom" value={selectedOption} onChange={handleOptionChange}>
-                <option value="">Bathrooms</option>
+              <select className="my-dropdown" id="bathroom" value={selectedBathroom} onChange={handleBathroomChange}>
+                <option value="placeholder" diabled default>Bathrooms</option>
                 <option value="Option 1">1</option>
                 <option value="Option 2">2</option>
                 <option value="Option 3">3</option>
@@ -254,8 +285,8 @@ const firebaseConfig = {
             className="standard-text"
           />
           <div>
-              <select className="my-dropdown" id="parking" value={selectedOption} onChange={handleOptionChange}>
-                <option value="">Parking</option>
+              <select className="my-dropdown" id="parking" value={selectedParking} onChange={handleParkingChange}>
+                <option value="placeholder" diabled default>Parking</option>
                 <option value="Option 1">Yes</option>
                 <option value="Option 2">No</option>
               </select>
@@ -297,7 +328,6 @@ const firebaseConfig = {
           </div>
            <input type="submit" onClick={postListing}/>
         </div>
-        
       );
 }
 
