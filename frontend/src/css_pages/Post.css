@@ -14,6 +14,19 @@ body { /*color of the body of the webpage*/
     margin-bottom: 10px;
     padding: 10px;
     width: 300px;
+    height: 15px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+  }
+
+  .my-dropdown {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 325px;
+    height: 38px;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
@@ -24,7 +37,8 @@ body { /*color of the body of the webpage*/
     display: block;
     margin-bottom: 10px;
     padding: 10px;
-    width: 60px;
+    width: 200px;
+    height: 15px;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
@@ -36,6 +50,7 @@ body { /*color of the body of the webpage*/
     margin-bottom: 10px;
     padding: 10px;
     width: 80px;
+    height: 15px;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
@@ -47,6 +62,19 @@ body { /*color of the body of the webpage*/
     margin-bottom: 10px;
     padding: 10px;
     width: 100px;
+    height: 15px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+  }
+
+  .state {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 75px;
+    height: 38px;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
@@ -58,6 +86,7 @@ body { /*color of the body of the webpage*/
     margin-bottom: 10px;
     padding: 10px;
     width: 100px;
+    height: 15px;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
@@ -78,19 +107,6 @@ body { /*color of the body of the webpage*/
     text-indent: 5px;
     line-height: 20px;
   }
-
-.my-dropdown {
-  display: block;
-  margin-bottom: -2px;
-  padding: 0px;
-  width: 200px;
-  height: 30px;
-  border: 1px solid rgb(128, 128, 128);
-  border-radius: 4px;
-  background-color: #fff;
-  font-size: 12px;
-  margin-right: 10px;
-}
 
 .property_info-container {
   display: flex;
@@ -118,19 +134,6 @@ body { /*color of the body of the webpage*/
     font-size: 36px;
   }
 
-  .state {
-    display: block;
-    margin-bottom: -2px;
-    padding: 5px;
-    width: 200px;
-    height: 30px;
-    border: 1px solid rgb(128, 128, 128);
-    border-radius: 4px;
-    background-color: #fff;
-    font-size: 12px;
-    margin-right: 10px;
-  }
-
 .row{
     display: flex;
     justify-content: center;
@@ -141,11 +144,13 @@ body { /*color of the body of the webpage*/
 .sub_row1{
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .sub_row2{
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .client_info_row {
