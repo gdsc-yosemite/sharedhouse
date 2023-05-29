@@ -86,7 +86,7 @@ function Listing() {
       return (
         <div class="property_info-container">
           <div class="property_info_heading">
-            Property Type
+            Property Typeixe
           </div>
           <div className="row">
             <input
