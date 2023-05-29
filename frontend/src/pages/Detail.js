@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 import '../App.css';
+import '../css_pages/Detail.css';
 
-function Listing() {
+function Detail() {
   const auth = getAuth();
   const navigate = useNavigate();
   const [currentUser, setUser] = useState();
@@ -146,4 +147,4 @@ function Listing() {
   );
 }
 
-export default Listing
+export default Detail
