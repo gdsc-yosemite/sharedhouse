@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import '../App.css';
-import './Post.css';
+import '../css_pages/Post.css';
 
 /** Firebase storage (for image upload) */
 import { initializeApp } from 'firebase/app';
@@ -23,7 +23,7 @@ const firebaseConfig = {
   const app = initializeApp(firebaseConfig);
   const storage =getStorage(app);
 
-  function Listing() {
+  function Post() {
     const auth = getAuth();
   const navigate = useNavigate();
   const [currentUser, setUser] = useState();
@@ -337,4 +337,4 @@ const firebaseConfig = {
       );
 }
 
-export default Listing
+export default Post
