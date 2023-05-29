@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+import { useMemo } from "react";
+import GoogleMapReact from 'google-map-react';
+import { getAuth} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 import '../App.css';
 import '../css_pages/Detail.css';
 
@@ -68,11 +70,34 @@ function Detail() {
             console.log(json)
           });
   }
+
+    const defaultProps = {
+      center: {
+        lat: 10.99835602,
+        lng: 77.01502627
+      },
+      zoom: 11
+    };
+
+
+    const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
   return (
-    <div>
-      detail
+    <div style={{ height: '100vh', width: '100%' }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: "AIzaSyDR50KAIMGCR7LtDM1Duv3hQY28OJrvsjE" }}
+        defaultCenter={defaultProps.center}
+        defaultZoom={defaultProps.zoom}
+      >
+        <AnyReactComponent
+          lat={59.955413}
+          lng={30.337844}
+          text="My Marker"
+        />
+      </GoogleMapReact>
     </div>
   );
-}
+};
 
-export default Detail
+
+export default Detail;
