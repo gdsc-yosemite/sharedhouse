@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body { /*color of the body of the webpage*/
+  background-color: #d6e0f8; /* Replace with your desired color */
+}
+
+.information {
+  display: flex;
+  justify-content: space-between;
+}
+
+.standard-text {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 300px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+  }
+
+  .room-apt {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 20px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+  }
+
+  .room-apt {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 25px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+  }
+
+.description {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    height: 212px;
+    width: 604px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    text-align: left;
+    text-indent: 5px;
+    line-height: 20px;
+  }
+
+.my-dropdown {
+  display: block;
+  margin-bottom: -2px;
+  padding: 0px;
+  width: 200px;
+  height: 30px;
+  border: 1px solid rgb(128, 128, 128);
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.property_info-container {
+  display: flex;
+  flex-direction: column; /* Each row will be placed vertically */
+  justify-content: center;
+  align-items: center; /* Align the rows to center */
+  gap: 1px;
+}
+  
+  .property_info_heading{
+    display: flex;
+    flex-direction: column; /* Each row will be placed vertically */
+    justify-content: left;
+    align-items: left; /* Align the rows to center */
+    gap: 1px;
+    font-size: 36px;
+  }
+
+  .client_info_heading{
+    display: flex;
+    flex-direction: column; /* Each row will be placed vertically */
+    justify-content: left;
+    align-items: left; /* Align the rows to center */
+    gap: 1px;
+    font-size: 36px;
+  }
+
+/*
+  .property_info-container > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px; 
+  }
+  
+  .property_info-container > div > label {
+    width: 150px;
+    margin-right: 10px; 
+  }
+  
+  .property_info-container > div > input {
+    flex: 1; 
+  }
+*/ 
+  .state {
+    display: block;
+    margin-bottom: -2px;
+    padding: 5px;
+    width: 200px;
+    height: 30px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+.row{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    gap: 75px;
+}
+
+.sub_row1{
+  display: flex;
+  justify-content: center;
+}
+
+.sub_row2{
+  display: flex;
+  justify-content: center;
+}
+
+.client_info_row {
+  display: flex;
+  justify-content: center;
+  gap: 75px;
+  margin-bottom: 10px;
+}
+
+#checkmark {
+  height: 15px;
+  visibility: hidden;
+  margin-left: 5px;
+}
