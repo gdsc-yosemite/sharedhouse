@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import '../App.css';
+//import '../App.css';
 import '../css_pages/Post.css';
 import checkmark from '../assets/checkmark.png';
 
@@ -233,7 +233,7 @@ setIsFormValid(isFormValid);
         <div className="client_info_heading">
           Client Info
         </div>
-      <div className="client_info_row">
+        <div className="client_info_row">
           <input
             type="text"
             name="first_name"
@@ -250,8 +250,8 @@ setIsFormValid(isFormValid);
             placeholder="Last Name"
             className="standard-text"
           />
-      </div>
-      <div className="client_info_row">
+        </div>
+        <div className="client_info_row">
           <input
             type="text"
             name="contact"
@@ -268,7 +268,7 @@ setIsFormValid(isFormValid);
             placeholder="Display Name"
             className="standard-text"
           />
-      </div>
+        </div>
       </div>
       <div className="property_info-container">
         <div className="property_info_heading">
@@ -444,10 +444,10 @@ setIsFormValid(isFormValid);
       </div>
       
       <div>
-            <input type="file" accept="image/*" onChange={handleImageChange} name="files[]" multiple/>
-            <button onClick={handleUpload}>Upload</button>
-            <img id="checkmark" alt="updated" src={checkmark}/>
-          </div>
+          <input type="file" accept="image/*" onChange={handleImageChange} name="files[]" multiple/>
+          <button onClick={handleUpload}>Upload</button>
+          <img id="checkmark" alt="updated" src={checkmark}/>
+      </div>
 
       <div>
           <button type="submit" onClick={postListing}>
