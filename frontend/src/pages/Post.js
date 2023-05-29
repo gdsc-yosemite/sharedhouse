@@ -27,11 +27,14 @@ const firebaseConfig = {
     const auth = getAuth();
   const navigate = useNavigate();
   const [currentUser, setUser] = useState();
-    const [image, setImage] = useState("");
+    const [images, setImage] = useState([]);
     const [imageUrls, addImage] = useState([]);
 
   function handleImageChange(event) {
-    setImage(event.target.files[0]);
+    let new_files = event.target.files;
+    for (let i = 0; i < new_files.length; i++) {
+      images.push(new_files[i]);
+    }
   }
 
   useEffect(() => {
@@ -57,13 +60,14 @@ const firebaseConfig = {
   };
 
   function handleUpload() {
-    if (!image) {
+    if (!images) {
       alert("Please upload an image!");
     }
-    const storageRef = ref(storage, `/files/${image.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, image);
+    for (let i = 0; i < images.length; i++) {
+      const storageRef = ref(storage, `/files/${images[i].name}`);
+      const uploadTask = uploadBytesResumable(storageRef, images[i]);
 
-    uploadTask.on(
+      uploadTask.on(
         "state_changed",
         (snapshot) => {
           const percent = Math.round(
@@ -79,6 +83,7 @@ const firebaseConfig = {
         });
         }
       ); 
+    }
   }
 
 /** Listing information */
@@ -323,9 +328,10 @@ const firebaseConfig = {
           </div>
 
           <div>
-            <input type="file" accept="image/*" onChange={handleImageChange} />
+            <input type="file" accept="image/*" onChange={handleImageChange} name="files[]" multiple/>
             <button onClick={handleUpload}>Upload</button>
           </div>
+
            <input type="submit" onClick={postListing}/>
         </div>
       );
