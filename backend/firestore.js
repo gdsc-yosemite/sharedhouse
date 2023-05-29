@@ -60,7 +60,7 @@ module.exports = function(app, admin){
                 start_date: data.lease_start_date,
                 end_date: data.lease_end_date,
                 description: data.description,
-                contact: data.contact_info,
+                contact: data.contact,
                 _createdAt: admin.firestore.FieldValue.serverTimestamp(),
                 _userId: user,
                 images: req.body.images,
