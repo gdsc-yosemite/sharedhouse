@@ -1,9 +1,104 @@
 
 import React, { useState, useEffect } from "react";
 import '../App.css';
-import './Post.css';
+import '../css_pages/Post.css';
 
-function Listing() {
+/** Firebase storage (for image upload) */
+import { initializeApp } from 'firebase/app';
+import { useNavigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDT-MnGUOVt_DH6qLonDqZYTmTs8dIm6Sc",
+  authDomain: "sharedhouse-yosemite.firebaseapp.com",
+  projectId: "sharedhouse-yosemite",
+  storageBucket: "sharedhouse-yosemite.appspot.com",
+  messagingSenderId: "913316799799",
+  appId: "1:913316799799:web:560e1c5ea73341a2dce6b2",
+  measurementId: "G-8S2H8126XZ"
+};
+
+  const app = initializeApp(firebaseConfig);
+  const storage =getStorage(app);
+
+  function Post() {
+    const auth = getAuth();
+  const navigate = useNavigate();
+  const [currentUser, setUser] = useState();
+    const [images, setImage] = useState([]);
+  let imageUrls = [];
+  const [uploaded, setUpload] = useState(false);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user.uid);
+        console.log("uid", currentUser)
+      } else {
+        setUser(null);
+        alert("Please login before posting");
+        navigate("/login")
+        console.log("user is logged out")
+      }
+    });
+  })
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      [name]: value,
+    }));
+  };
+
+  function handleImageChange(event) {
+    let new_files = event.target.files;
+    console.log("new files: ", new_files);
+    for (let i = 0; i < new_files.length; i++) {
+      images.push(new_files[i]);
+    }
+    setUpload(false);
+  }
+
+  function handleUpload() {
+    /** TODO: can't delete images */
+    let tempUrls = []; // empty array
+    tempUrls.length = 0;
+
+    if (!images) {
+      alert("Please upload an image!");
+    }
+    for (let i = 0; i < images.length; i++) {
+      const storageRef = ref(storage, `/files/${images[i].name}`);
+      const uploadTask = uploadBytesResumable(storageRef, images[i]);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+        },
+        (err) => console.log(err),
+        () => {
+        // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          tempUrls.push(url);
+          console.log(url);
+        });
+        }
+      ); 
+    }
+    imageUrls = tempUrls
+    console.log("temp urls: ", tempUrls);
+    setUpload(true);
+    console.log("image urls: ", imageUrls);
+  }
+
+/** Listing information */
+
   const [inputs, setInputs] = useState({
     first_name: "",
     last_name: "",
@@ -66,7 +161,7 @@ function Listing() {
     selectedParking,
   ]);
 
-  const handleInputChange = (event) => {
+  const handleInfoChange = (event) => {
     const { name, value } = event.target;
     setInputs((prevInputs) => ({
       ...prevInputs,
@@ -103,7 +198,9 @@ function Listing() {
     console.log("hi", inputs);
     var data = {
       type: 'listing',
-      data: inputs
+      data: inputs,
+      curUser: currentUser,
+      images: imageUrls
     }
     fetch('http://localhost:3001/firestore', {
       method: 'POST',
@@ -331,8 +428,14 @@ function Listing() {
           />
         </div>
       </div>
+      
       <div>
-          <button type="submit" onClick={postListing} disabled={!isFormValid}>
+            <input type="file" accept="image/*" onChange={handleImageChange} name="files[]" multiple/>
+            <button onClick={handleUpload}>Upload</button>
+          </div>
+
+      <div>
+          <button type="submit" onClick={postListing}>
             Submit
           </button>
         </div>
@@ -340,4 +443,4 @@ function Listing() {
     );
 }
 
-export default Listing;
+export default Post
