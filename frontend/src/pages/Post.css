@@ -13,7 +13,7 @@ body { /*color of the body of the webpage*/
     display: block;
     margin-bottom: 10px;
     padding: 10px;
-    width: 200px;
+    width: 300px;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
@@ -59,13 +59,13 @@ body { /*color of the body of the webpage*/
   margin-right: 10px;
 }
 
-  .property_info-container {
-    display: flex;
-    flex-direction: column; /* Each row will be placed vertically */
-    justify-content: center;
-    align-items: center; /* Align the rows to center */
-    gap: 1px;
-  }
+.property_info-container {
+  display: flex;
+  flex-direction: column; /* Each row will be placed vertically */
+  justify-content: center;
+  align-items: center; /* Align the rows to center */
+  gap: 1px;
+}
   
   .property_info_heading{
     display: flex;
@@ -76,22 +76,32 @@ body { /*color of the body of the webpage*/
     font-size: 36px;
   }
 
+  .client_info_heading{
+    display: flex;
+    flex-direction: column; /* Each row will be placed vertically */
+    justify-content: left;
+    align-items: left; /* Align the rows to center */
+    gap: 1px;
+    font-size: 36px;
+  }
+
+/*
   .property_info-container > div {
     display: flex;
-    flex-direction: row; /* Each group of textboxes in a row will be placed horizontally */
-    align-items: center; /* Align the textboxes to the center of the row */
-    margin-bottom: 10px; /* Add some vertical space between each row */
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px; 
   }
   
   .property_info-container > div > label {
-    width: 150px; /* Set a fixed width for the label to align the textboxes */
-    margin-right: 10px; /* Add some horizontal space between the label and the textbox */
+    width: 150px;
+    margin-right: 10px; 
   }
   
   .property_info-container > div > input {
-    flex: 1; /* Allow the textbox to take up the remaining space in the row */
+    flex: 1; 
   }
-
+*/ 
   .state {
     display: block;
     margin-bottom: -2px;
@@ -104,3 +114,27 @@ body { /*color of the body of the webpage*/
     font-size: 12px;
     margin-right: 10px;
   }
+
+.row{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    gap: 75px;
+}
+
+.sub_row1{
+  display: flex;
+  justify-content: center;
+}
+
+.sub_row2{
+  display: flex;
+  justify-content: center;
+}
+
+.client_info_row {
+  display: flex;
+  justify-content: center;
+  gap: 75px;
+  margin-bottom: 10px;
+}

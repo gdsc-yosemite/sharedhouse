@@ -1,10 +1,14 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../App.css';
 import './Post.css';
 
 function Listing() {
   const [inputs, setInputs] = useState({
+    first_name: "",
+    last_name: "",
+    contact: "",
+    display_name: "",
     listing_title: "",
     listing_price: "",
     address: "",
@@ -17,7 +21,6 @@ function Listing() {
     lease_end_date: "",
     description: "",
   });
-  
 
   const [selectedPropertyType, setSelectedPropertyType] = useState("");
   const [selectedListingType, setSelectedListingType] = useState("");
@@ -25,6 +28,43 @@ function Listing() {
   const [selectedBedroom, setSelectedBedroom] = useState("");
   const [selectedBathroom, setSelectedBathroom] = useState("");
   const [selectedParking, setSelectedParking] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    // Check if all input fields and dropdowns are filled/selected
+    const isFormValid =
+      inputs.first_name !== "" &&
+      inputs.last_name !== "" &&
+      inputs.contact !== "" &&
+      inputs.display_name !== "" &&
+      inputs.listing_title !== "" &&
+      inputs.listing_price !== "" &&
+      inputs.address !== "" &&
+      inputs.room_or_appt_num !== "" &&
+      inputs.city !== "" &&
+      inputs.zip !== "" &&
+      inputs.property_sqft !== "" &&
+      inputs.lease_start_date !== "" &&
+      inputs.location !== "" &&
+      inputs.lease_end_date !== "" &&
+      inputs.description !== "" &&
+      selectedPropertyType !== "" &&
+      selectedListingType !== "" &&
+      selectedState !== "" &&
+      selectedBedroom !== "" &&
+      selectedBathroom !== "" &&
+      selectedParking !== "";
+
+    setIsFormValid(isFormValid);
+  }, [
+    inputs,
+    selectedPropertyType,
+    selectedListingType,
+    selectedState,
+    selectedBedroom,
+    selectedBathroom,
+    selectedParking,
+  ]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -66,153 +106,203 @@ function Listing() {
       data: inputs
     }
     fetch('http://localhost:3001/firestore', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
-            body: JSON.stringify(data)
-        // }).then(response => {
-        //   console.log(response.text())
-        //   if(response.ok) {
-        //     return response.json();
-        //   } else {
-        //     throw new Error ('Someting went wrong...')
-        //   }
-        }).then((response) => response.json())
-          .then((json) => {
-            console.log(json)
-          });
+      method: 'POST',
+      headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
+      body: JSON.stringify(data)
+    }).then((response) => response.json())
+      .then((json) => {
+        console.log(json)
+      });
   }
 
 
-      return (
-        <div class="property_info-container">
-          <div class="property_info_heading">
-            Property Typeixe
-          </div>
-          <div className="row">
-            <input
-              type="text"
-              name="listing_title"
-              value={inputs.listing_title}
-              onChange={handleInputChange}
-              placeholder="Listing Title"
-              className="standard-text"
-            />
-            <div>
-              <select className="my-dropdown" id="property type" value={selectedPropertyType} onChange={handlePropertyTypeChange}>
-                <option value="">Property Type</option>
-                <option value="Option 1">Appartment</option>
-                <option value="Option 2">House</option>
-              </select>
-              <br />
-            </div>
-          </div>
-          <div className="row">
-            <div>
-              <select className="my-dropdown" id="listing type" value={selectedListingType} onChange={handleListingTypeChange}>
-                <option value="">Listing Type</option>
-                <option value="Option 1">Sub-Lease</option>
-                <option value="Option 2">Lease Transfer</option>
-              </select>
-              <br />
-            </div>
+  return (
+    <div>
+      <div className="client_info-containter">
+        <div className="client_info_heading">
+          Client Info
+        </div>
+      <div className="client_info_row">
           <input
             type="text"
-            name="listing price"
-            value={inputs.listing_price}
+            name="first_name"
+            value={inputs.first_name}
             onChange={handleInputChange}
-            placeholder="Listing Price"
-            className="standard-text"
-          />
-          </div>
-          <div className="row">
-          <input
-            type="text"
-            name="address"
-            value={inputs.address}
-            onChange={handleInputChange}
-            placeholder="Address"
+            placeholder="First Name"
             className="standard-text"
           />
           <input
             type="text"
-            name="room_or_appt_num"
-            value={inputs.room_or_appt_num}
+            name="last_name"
+            value={inputs.last_name}
             onChange={handleInputChange}
-            placeholder="Room/Apt #"
-            className="room-apt"
+            placeholder="Last Name"
+            className="standard-text"
+          />
+      </div>
+      <div className="client_info_row">
+          <input
+            type="text"
+            name="contact"
+            value={inputs.contact}
+            onChange={handleInputChange}
+            placeholder="Contact"
+            className="standard-text"
           />
           <input
             type="text"
-            name="city"
-            value={inputs.city}
+            name="display_name"
+            value={inputs.display_name}
             onChange={handleInputChange}
-            placeholder="City"
+            placeholder="Display Name"
+            className="standard-text"
+          />
+      </div>
+      </div>
+      <div className="property_info-container">
+        <div className="property_info_heading">
+          Property Type
+        </div>
+        <div className="row">
+          <input
+            type="text"
+            name="listing_title"
+            value={inputs.listing_title}
+            onChange={handleInputChange}
+            placeholder="Listing Title"
             className="standard-text"
           />
           <div>
-              <select className="state" id="state" value={selectedState} onChange={handleStateChange}>
-                <option value="">State</option>
-                <option value="Option 1">CA</option>
-                <option value="Option 2">Put all other later</option>
-              </select>
-              <br />
+            <select className="my-dropdown" id="property_type" value={selectedPropertyType} onChange={handlePropertyTypeChange}>
+              <option value="">Property Type</option>
+              <option value="Apartment">Apartment</option>
+              <option value="House">House</option>
+            </select>
+            <br />
+          </div>
+        </div>
+        <div className="row">
+          <div>
+            <select className="my-dropdown" id="listing_type" value={selectedListingType} onChange={handleListingTypeChange}>
+              <option value="">Listing Type</option>
+              <option value="Sub-Lease">Sub-Lease</option>
+              <option value="Lease Transfer">Lease Transfer</option>
+            </select>
+            <br />
           </div>
           <input
             type="text"
-            name="Zip"
-            value={inputs.zip}
+            name="listing_price"
+            value={inputs.listing_price}
             onChange={handleInputChange}
-            placeholder="ZIP"
+            placeholder="Listing Price Per Month"
             className="standard-text"
             pattern="[0-9]*"
             inputMode="numeric"
+            onKeyPress={(event) => {
+              if (!/[0-9]/.test(event.key)) {
+                event.preventDefault();
+              }
+            }}
           />
+        </div>
+        <div className="row">
+          
+          <div className="sub_row1">
+            <input
+              type="text"
+              name="address"
+              value={inputs.address}
+              onChange={handleInputChange}
+              placeholder="Address"
+              className="standard-text"
+            />
+            <input
+              type="text"
+              name="room_or_appt_num"
+              value={inputs.room_or_appt_num}
+              onChange={handleInputChange}
+              placeholder="Room/Apt #"
+              className="room-apt"
+            />
+            <input
+              type="text"
+              name="city"
+              value={inputs.city}
+              onChange={handleInputChange}
+              placeholder="City"
+              className="standard-text"
+            />
           </div>
-          <div className="row">
-            <div>
-              <select className="my-dropdown" id="bedroom" value={selectedBedroom} onChange={handleBedroomChange}>
-                <option value="">Bedrooms</option>
-                <option value="Option 1">1</option>
-                <option value="Option 2">2</option>
-                <option value="Option 3">3</option>
-                <option value="Option 4">4</option>
-                <option value="Option 5">5</option>
-                <option value="Option 6">6</option>
-              </select>
-              <br />
-            </div>
-            <div>
-              <select className="my-dropdown" id="bathroom" value={selectedBathroom} onChange={handleBathroomChange}>
-                <option value="">Bathrooms</option>
-                <option value="Option 1">1</option>
-                <option value="Option 2">2</option>
-                <option value="Option 3">3</option>
-                <option value="Option 4">4</option>
-                <option value="Option 5">5</option>
-                <option value="Option 6">6</option>
-              </select>
-              <br />
-            </div>
+          <div className="sub_row2">
+            <select className="state" id="state" value={selectedState} onChange={handleStateChange}>
+              <option value="">State</option>
+              <option value="CA">CA</option>
+              <option value="Other">Other</option>
+            </select>
+            <br/>
+            <input
+              type="text"
+              name="zip"
+              value={inputs.zip}
+              onChange={handleInputChange}
+              placeholder="ZIP"
+              className="standard-text"
+              pattern="[0-9]*"
+              inputMode="numeric"
+              onKeyPress={(event) => {
+                if (!/[0-9]/.test(event.key)) {
+                  event.preventDefault();
+                }
+              }}
+            />
           </div>
-          <div className="row">
+        </div>
+        <div className="row">
+          <div>
+            <select className="my-dropdown" id="bedroom" value={selectedBedroom} onChange={handleBedroomChange}>
+              <option value="">Bedrooms</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+            <br />
+          </div>
+          <div>
+            <select className="my-dropdown" id="bathroom" value={selectedBathroom} onChange={handleBathroomChange}>
+              <option value="">Bathrooms</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+            <br />
+          </div>
+        </div>
+        <div className="row">
           <input
             type="text"
             name="property_sqft"
-            value={inputs.property_SqFt}
+            value={inputs.property_sqft}
             onChange={handleInputChange}
             placeholder="Property SqFt"
             className="standard-text"
           />
           <div>
-              <select className="my-dropdown" id="parking" value={selectedParking} onChange={handleParkingChange}>
-                <option value="">Parking</option>
-                <option value="Option 1">Yes</option>
-                <option value="Option 2">No</option>
-              </select>
-              <br />
-            </div>
+            <select className="my-dropdown" id="parking" value={selectedParking} onChange={handleParkingChange}>
+              <option value="">Parking</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+            <br />
           </div>
-          <div className="row">
+        </div>
+        <div className="row">
           <input
             type="text"
             name="lease_start_date"
@@ -229,8 +319,8 @@ function Listing() {
             placeholder="Lease End Date (MM/DD/YYYY)"
             className="standard-text"
           />
-          </div>
-          <div className="row">
+        </div>
+        <div className="row">
           <input
             type="text"
             name="description"
@@ -239,10 +329,15 @@ function Listing() {
             placeholder="Property and Lease Description..."
             className="description"
           />
-          </div>
-           <input type="submit" onClick={postListing}/>
         </div>
-      );
+      </div>
+      <div>
+          <button type="submit" onClick={postListing} disabled={!isFormValid}>
+            Submit
+          </button>
+        </div>
+    </div>
+    );
 }
 
-export default Listing
+export default Listing;
