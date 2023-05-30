@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "firebase": "^9.22.1",
-    "google-map-react": "^2.2.1",
-    "query-string": "^8.1.0"
-  }
-}
