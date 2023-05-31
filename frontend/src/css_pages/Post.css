@@ -187,3 +187,9 @@ body { /*color of the body of the webpage*/
   width: 200px;
   margin: 15px;
 }
+
+#checkmark {
+  height: 15px;
+  visibility: hidden;
+  margin-left: 5px;
+}
