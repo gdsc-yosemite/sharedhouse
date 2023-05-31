@@ -178,7 +178,12 @@ body { /*color of the body of the webpage*/
 }
 
 .submit{
-  background-color: blue;
-  color: rgb(0, 0, 0);
-  height: 200px;
+  background-color: #091A71;
+  border-radius: 15px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  height: 90px;
+  width: 200px;
+  margin: 15px;
 }
