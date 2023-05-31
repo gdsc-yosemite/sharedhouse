@@ -450,7 +450,7 @@ setIsFormValid(isFormValid);
       </div>
 
       <div>
-          <button type="submit" onClick={postListing}>
+          <button type="submit" className="submit" onClick={postListing}>
             Submit
           </button>
         </div>
