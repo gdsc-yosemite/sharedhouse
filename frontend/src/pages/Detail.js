@@ -16,6 +16,9 @@ function Detail() {
   /** All the listings */
   const location = useLocation();
   const [listing, setListing] = useState({});
+  const [lat, setLat] = useState();
+  const [long, setLong] = useState();
+
   const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
     /** initially listing */
@@ -32,50 +35,27 @@ function Detail() {
     }, [])
 
     useEffect(() => {
-      console.log(listing.images);
+      var address = listing.address +' '+ listing.city + listing.state;
+      Geocode.setApiKey("AIzaSyDR50KAIMGCR7LtDM1Duv3hQY28OJrvsjE");
+      Geocode.fromAddress(address).then(
+        (response) => {
+          console.log('coordinates', [response.results[0].geometry.location.lat, response.results[0].geometry.location.lng]);
+          changeDef(response.results[0].geometry.location.lat, response.results[0].geometry.location.lng);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
     }, [listing]);
-     
-    var address = listing.address +' '+ listing.city + listing.state;
-    Geocode.setApiKey("AIzaSyDR50KAIMGCR7LtDM1Duv3hQY28OJrvsjE");
-    Geocode.fromAddress(address).then(
-      (response) => {
-        changeDef(response.results[0].geometry.location.lat, response.results[0].geometry.location.lng);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-
     
     function changeDef(lati, long)
     {
-
+      setLat(lati);
+      setLong(long);
     }
-    var defaultProps = {
-    center: {
-      lat: 50,
-      lng: 50
-    },
-    zoom: 11
-  };
-
-  var mylat = 20;
-  var mylng = 20;
 
     return (
       <div className="details">
-        <div style={{ height: '50vh', width: '50%' }} id="mapmarker">
-            <GoogleMapReact
-              bootstrapURLKeys={{ key: "AIzaSyDR50KAIMGCR7LtDM1Duv3hQY28OJrvsjE" }}
-              defaultCenter={{lat: mylat, lng: mylng}}
-              defaultZoom={defaultProps.zoom}>
-              <AnyReactComponent 
-                lat={50}
-                lng={-121.7405}
-                text = "Your Listing"
-              />
-            </GoogleMapReact>
-        </div>
         {Object.keys(listing).length > 0 && (
         <div className="listing">
           <hr />
@@ -108,6 +88,25 @@ function Detail() {
           {listing.images.map((image, index) => (
             <img className="listing-img" key={index} src={image} alt={`Image ${index}`} />
           ))}
+
+          <div>
+            debugging
+            <div>{lat}</div>
+            <div>{long}</div>
+          </div>
+
+          <div style={{ height: '50vh', width: '50%' }} id="mapmarker">
+            <GoogleMapReact
+              bootstrapURLKeys={{ key: "AIzaSyDR50KAIMGCR7LtDM1Duv3hQY28OJrvsjE" }}
+              defaultCenter={{lat: lat, lng: long}}
+              defaultZoom={11}>
+              <AnyReactComponent 
+                lat={lat}
+                lng={long}
+                text = "Your Listing"
+              />
+            </GoogleMapReact>
+          </div>
 
         </div>
       )}
