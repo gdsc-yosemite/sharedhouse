@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+li, a, button {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 19px;
+  color: black;
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2px;
+  margin-right: 60px;
+}
+
+/* LOGO */
+.logo {
+  cursor: pointer;
+  margin-right: auto;
+  overflow: hidden;
+  width: 250px;
+  height: 100px;
+
+
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+.nav-links {
+  list-style: none;
+}
+
+.nav-links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.nav-links li a {
+  transition: all 0.3 ease 0s;
+}
+
+.nav-links li a :hover{
+  color: #0089a9;
+  text-decoration: underline;
+}
+
+.login button {
+  margin-left: 50px;
+  padding: 12px 42px;
+  background-color: rgb(0, 20, 134);
+  border: none;
+  border-radius: 13px;
+  cursor: pointer;
+  transition: all 0.3 ease 0s;
+  color: white;
+}
+
+button:hover {
+  background-color: rgb(63, 89, 237);
+}
+
+/* NAVBAR MENU */
+.menu {
+  display: flex;
+  gap: 1em;
+  font-size: 18px;
+}
+
+.menu li:hover {
+  color: rgb(63, 89, 237);
+  transition: 0.3s ease;
+  text-decoration: underline;
+  text-decoration-color: rgb(63, 89, 237);
+  text-decoration-thickness: 3px;
+}
+
+.menu li {
+  padding: 5px 14px;
+}
+
+/* HAMBURGER MENU */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  user-select: none;
+}
+
+/* APPLYING MEDIA QUERIES */
+@media (max-width: 768px) {
+ .menu {
+    display:none;
+    position: absolute;
+    background-color:teal;
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding: 16px 0;
+  }
+
+  .menu li:hover {
+    display: inline-block;
+    background-color:#4c9e9e;
+    transition: 0.3s ease;
+  }
+
+  .menu li + li {
+    margin-top: 12px;
+  }
+
+  input[type=checkbox]:checked ~ .menu {
+    display: block;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .dropdown {
+    left: 50%;
+    top: 30px;
+    transform: translateX(35%);
+  }
+
+  .dropdown li:hover {
+    background-color: #4c9e9e;
+  }
+}

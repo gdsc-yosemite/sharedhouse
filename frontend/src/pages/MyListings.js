@@ -3,6 +3,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 import '../App.css';
+import '../css_pages/MyListings.css';
 
 function MyListings() {
     const [load, reload] = useState([]);
@@ -65,14 +66,15 @@ function MyListings() {
         {
         listings.map((listing)=> (
             <div className="listing">
-                <hr></hr>
                 <div className="listing-name">{listing.name}</div>
 
-                <div className="listing-address">{listing.address}</div>
-                <div className="listing-room-appt-num">{listing.room_appt_num}</div>
-                <div className="listing-city">{listing.city}</div>
-                <div className="listing-state">{listing.state}</div>
-                <div className="listing-zip">{listing.zip}</div>
+                <div className="listing-address-info">
+                    <div className="listing-address">{listing.address}</div>
+                    <div className="listing-room-appt-num">{listing.room_appt_num}</div>
+                    <div className="listing-city">{listing.city}</div>
+                    <div className="listing-state">{listing.state}</div>
+                    <div className="listing-zip">{listing.zip}</div>
+                </div>
 
                 <div className="listing-start-date">{listing.start_date}</div>
                 <div className="listing-end-date">{listing.end_date}</div>
@@ -90,7 +92,7 @@ function MyListings() {
                 <div className="listing-display-name">{listing.display_name}</div>
                 <div className="listing-contact">{listing.contact}</div>
 
-                <button onClick={() => delListing(listing.id)}>Delete</button>
+                <button className="button-delete" onClick={() => delListing(listing.id)}>Delete</button>
             </div>
         ))
         }
