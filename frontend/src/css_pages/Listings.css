@@ -1,68 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
 
-.listing-map {
-  border-radius: 15px;
-  margin-bottom: 50px;
-}
-
-.standard-text {
-    display: block;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid gray;
-    border-radius: 5px;
+.listings {
+    display: flex;
+    background-color: #d6e0f8;
     font-family: 'Inter', sans-serif;
-  }
-  
-    .listing-name {
-        font-size: 52px;
+    flex-direction: column;
+    align-items: center;
+
+    .title {
+        font-size: 48px;
         font-weight:900;
-        margin: 15px;
     }
 
     .listing {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-color: white;
-      border-radius: 15px;
-      padding: 15px;
-      margin: 20px 50px 20px 50px;
-      font-size: 24px;
-      min-width: 900px;
-      font-family: 'Inter', sans-serif;
-
-        .listing-desc {
-          display: flex;
-          justify-content: center;
-        }
-
-        .listing-images {
-          display: flex;
-          flex-direction: row;
-          margin: 50px;
-          flex-wrap: wrap;
-          justify-content: center;
-
-          .listing-img {
-            border-radius: 15px;
-            margin: 15px;
-            width: 500px;
-            height: 350px;
-          }
-        }
-
-        .desc-text {
-          border-radius: 15px;
-          background-color: #edeff2;
-          padding: 20px;
-          margin-left: 30px;
-          min-width: 600px;
-          min-height: 200px;
-          display: flex;
-          justify-content: start;
-        }
+        background-color: white;
+        border-radius: 15px;
+        padding: 15px;
+        margin: 20px 50px 20px 50px;
+        font-size: 18px;
+        min-width: 900px;
 
         .listing-info {
             display: flex;
@@ -91,6 +47,11 @@
             }
         }
 
+        .listing-name {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
         .listing-address-info {
 
             .listing-address {
@@ -114,3 +75,4 @@
             font-weight: bold;
         }
     }
+}

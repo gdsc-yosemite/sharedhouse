@@ -43,41 +43,67 @@ function Detail() {
 
     return (
       <div className="details">
-        <div>More Information:</div>
         {Object.keys(listing).length > 0 && (
         <div className="listing">
-          <hr />
-          <div className="listing-name">{listing.name}</div>
+          <div className="listing-header">
+                    <div className="listing-name">{listing.name}</div>
+                    <div className="listing-contact-info">
+                            <div className="listing-display-name">{listing.display_name}</div>
+                            <div className="listing-contact"><span className="listing-label">Contact:</span> {listing.contact}</div>
+                    </div>
+                </div>
 
-          <div className="listing-address">{listing.address}</div>
-          <div className="listing-room-appt-num">{listing.room_appt_num}</div>
-          <div className="listing-city">{listing.city}</div>
-          <div className="listing-state">{listing.state}</div>
-          <div className="listing-zip">{listing.zip}</div>
+                <div className="listing-text">
+                    <div className="listing-left">
+                        <div className="listing-address-info listing-info">
+                            <div className="listing-label">Address:</div>
+                            <div className="listing-address">
+                                <div className="listing-address-1">{listing.address} 
+                                    { listing.room_appt_num != "" && (
+                                        <span>, RM {listing.room_appt_num}</span>
+                                    )}
+                                </div>
+                                <div className="listing-address-2">{listing.city}, {listing.state} {listing.zip}</div>
+                            </div>
+                        </div>
 
-          <div className="listing-start-date">{listing.start_date}</div>
-          <div className="listing-end-date">{listing.end_date}</div>
+                        <div className="listing-date-info listing-info">
+                            <div className="listing-start-date"><span className="listing-label">Start Date:</span> {listing.start_date}</div>
+                            <div className="listing-end-date"><span className="listing-label">End Date:</span> {listing.end_date}</div>
+                        </div>
 
-          <div className="listing-rate">{listing.rate}</div>
-          <div className="listing-sqft">{listing.sqft}</div>
+                        <div className="listing-info">
+                            <div className="listing-rate"><span className="listing-label">Rate:</span> ${listing.rate}/mo.</div>
+                        </div>
+                        </div>
 
-          <div className="listing-property-type">{listing.property_type}</div>
-          <div className="listing-type">{listing.listing_type}</div>
+                    <div className="listing-right">
+                        <div className="listing-type-info listing-info">
+                            <div className="listing-property-type"><span className="listing-label">Property Type:</span> {listing.property_type}</div>
+                            <div className="listing-type"><span className="listing-label">Listing Type:</span> {listing.listing_type}</div>
+                        </div>
 
-          <div className="listing-bedroom">{listing.bedroom}</div>
-          <div className="listing-bathroom">{listing.bathroom}</div>
-          <div className="listing-parking">{listing.parking}</div>
+                        <div className="listing-amenity-info listing-info">
+                            <div className="listing-bedroom"><span className="listing-label"># of Bedrooms:</span> {listing.bedroom}</div>
+                            <div className="listing-bathroom"><span className="listing-label"># of Bathrooms</span> {listing.bathroom}</div>
+                            <div className="listing-parking"><span className="listing-label">Parking</span> {listing.parking}</div>
+                        </div>
 
-          <div className="listing-display-name">{listing.display_name}</div>
-          <div className="listing-contact">{listing.contact}</div>
+                        <div className="listing-info">
+                          <div className="listing-sqft"><span className="listing-label">Property sqft:</span> {listing.sqft}</div>
+                        </div>
+                    </div>
+                </div>
 
-          <div className="listing-desc">{listing.description}</div>
+          <div className="listing-desc"><span className="listing-label">Description:</span> <span className="desc-text">{listing.description}</span></div>
 
-          {listing.images.map((image, index) => (
-            <img className="listing-img" key={index} src={image} alt={`Image ${index}`} />
-          ))}
+          <div className="listing-images">
+            {listing.images.map((image, index) => (
+              <img className="listing-img" key={index} src={image} alt={`Image ${index}`} />
+            ))}
+          </div>
 
-          <div style={{ height: '50vh', width: '50%' }}>
+          <div className="listing-map" style={{ height: '50vh', width: '50%' }}>
             <GoogleMapReact
               bootstrapURLKeys={{ key: "AIzaSyDR50KAIMGCR7LtDM1Duv3hQY28OJrvsjE" }}
               defaultCenter={defaultProps.center}
@@ -88,7 +114,7 @@ function Detail() {
                 text="My Marker"
               />
             </GoogleMapReact>
-    </div>
+          </div>
         </div>
       )}
       </div>
