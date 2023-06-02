@@ -47,6 +47,7 @@ module.exports = function(app, admin){
     app.post('/firestore', (req, res) => {
         const type = req.body.type
         const user = req.body.curUser
+        const select = req.body.select
         console.log('type', type);
         const data = req.body.data
         console.log('images', req.body.images);
@@ -55,17 +56,34 @@ module.exports = function(app, admin){
         if (type == 'listing') {
             db.collection(type).add({
                 name: data.listing_title,
+
                 address: data.address,
-                location: data.location,
+                room_appt_num: data.room_or_appt_num,
+                city: data.city,
+                state: select.state,
+                zip: data.zip,
+
                 sqft: data.property_sqft,
                 rate: data.listing_price,
+
                 start_date: data.lease_start_date,
                 end_date: data.lease_end_date,
+
                 description: data.description,
-                contact: data.contact,
                 _createdAt: admin.firestore.FieldValue.serverTimestamp(),
                 _userId: user,
                 images: req.body.images,
+
+                contact: data.contact,
+                first_name: data.first_name,
+                last_name: data.last_name,
+                display_name: data.display_name,
+
+                property_type: select.property_type,
+                listing_type: select.listing_type,
+                bedroom: select.bedroom,
+                bathroom: select.bathroom,
+                parking: select.parking
             }).then((docRef) => {
                 console.log("Docment written with ID: ", docRef.id);
                 id = docRef.id

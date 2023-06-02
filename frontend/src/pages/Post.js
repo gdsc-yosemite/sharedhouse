@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import '../App.css';
+//import '../App.css';
 import '../css_pages/Post.css';
 import checkmark from '../assets/checkmark.png';
 
@@ -25,8 +25,8 @@ const firebaseConfig = {
   const storage =getStorage(app);
 
   function Post() {
+    const navigate = useNavigate();
     const auth = getAuth();
-  const navigate = useNavigate();
   const [currentUser, setUser] = useState();
   const [images, setImage] = useState([]);
   const [imageUrls, setImages] = useState([]);
@@ -123,40 +123,53 @@ const firebaseConfig = {
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    // Check if all input fields and dropdowns are filled/selected
-    const isFormValid =
-      inputs.first_name !== "" &&
-      inputs.last_name !== "" &&
-      inputs.contact !== "" &&
-      inputs.display_name !== "" &&
-      inputs.listing_title !== "" &&
-      inputs.listing_price !== "" &&
-      inputs.address !== "" &&
-      inputs.room_or_appt_num !== "" &&
-      inputs.city !== "" &&
-      inputs.zip !== "" &&
-      inputs.property_sqft !== "" &&
-      inputs.lease_start_date !== "" &&
-      inputs.location !== "" &&
-      inputs.lease_end_date !== "" &&
-      inputs.description !== "" &&
-      selectedPropertyType !== "" &&
-      selectedListingType !== "" &&
-      selectedState !== "" &&
-      selectedBedroom !== "" &&
-      selectedBathroom !== "" &&
-      selectedParking !== "";
+  const isFormValid =
+    inputs.first_name !== "" &&
+    inputs.last_name !== "" &&
+    inputs.contact !== "" &&
+    inputs.display_name !== "" &&
+    inputs.listing_title !== "" &&
+    inputs.listing_price !== "" &&
+    inputs.address !== "" &&
+    inputs.room_or_appt_num !== "" &&
+    inputs.city !== "" &&
+    inputs.zip !== "" &&
+    inputs.property_sqft !== "" &&
+    inputs.lease_start_date !== "" &&
+    inputs.location !== "" &&
+    inputs.lease_end_date !== "" &&
+    inputs.description !== "" &&
+    selectedPropertyType !== "" &&
+    selectedListingType !== "" &&
+    selectedState !== "" &&
+    selectedBedroom !== "" &&
+    selectedBathroom !== "" &&
+    selectedParking !== "";
 
-    setIsFormValid(isFormValid);
-  }, [
-    inputs,
-    selectedPropertyType,
-    selectedListingType,
-    selectedState,
-    selectedBedroom,
-    selectedBathroom,
-    selectedParking,
-  ]);
+setIsFormValid(isFormValid);
+}, [
+  inputs.first_name,
+  inputs.last_name,
+  inputs.contact,
+  inputs.display_name,
+  inputs.listing_title,
+  inputs.listing_price,
+  inputs.address,
+  inputs.room_or_appt_num,
+  inputs.city,
+  inputs.zip,
+  inputs.property_sqft,
+  inputs.lease_start_date,
+  inputs.location,
+  inputs.lease_end_date,
+  inputs.description,
+  selectedPropertyType,
+  selectedListingType,
+  selectedState,
+  selectedBedroom,
+  selectedBathroom,
+  selectedParking,
+]);
 
   const handleInfoChange = (event) => {
     const { name, value } = event.target;
@@ -196,7 +209,15 @@ const firebaseConfig = {
       type: 'listing',
       data: inputs,
       curUser: currentUser,
-      images: imageUrls
+      images: imageUrls,
+      select: {
+        property_type : selectedPropertyType ,
+        listing_type : selectedListingType ,
+        state : selectedState ,
+        bedroom : selectedBedroom ,
+        bathroom : selectedBathroom ,
+        parking : selectedParking
+      }
     }
     console.log("img :( ", imageUrls);
     console.log("hi", data);
@@ -207,17 +228,21 @@ const firebaseConfig = {
     }).then((response) => response.json())
       .then((json) => {
         console.log(json)
+        navigate('/mylistings');
       });
   }
 
 
   return (
     <div>
+      <div className="title">
+        Post Your Property
+      </div>
       <div className="client_info-containter">
         <div className="client_info_heading">
           Client Info
         </div>
-      <div className="client_info_row">
+        <div className="client_info_row">
           <input
             type="text"
             name="first_name"
@@ -234,8 +259,8 @@ const firebaseConfig = {
             placeholder="Last Name"
             className="standard-text"
           />
-      </div>
-      <div className="client_info_row">
+        </div>
+        <div className="client_info_row">
           <input
             type="text"
             name="contact"
@@ -252,7 +277,7 @@ const firebaseConfig = {
             placeholder="Display Name"
             className="standard-text"
           />
-      </div>
+        </div>
       </div>
       <div className="property_info-container">
         <div className="property_info_heading">
@@ -310,7 +335,7 @@ const firebaseConfig = {
               value={inputs.address}
               onChange={handleInputChange}
               placeholder="Address"
-              className="standard-text"
+              className="address"
             />
             <input
               type="text"
@@ -320,16 +345,16 @@ const firebaseConfig = {
               placeholder="Room/Apt #"
               className="room-apt"
             />
+          </div>
+          <div className="sub_row2">
             <input
               type="text"
               name="city"
               value={inputs.city}
               onChange={handleInputChange}
               placeholder="City"
-              className="standard-text"
+              className="city"
             />
-          </div>
-          <div className="sub_row2">
             <select className="state" id="state" value={selectedState} onChange={handleStateChange}>
               <option value="">State</option>
               <option value="CA">CA</option>
@@ -342,7 +367,7 @@ const firebaseConfig = {
               value={inputs.zip}
               onChange={handleInputChange}
               placeholder="ZIP"
-              className="standard-text"
+              className="zip"
               pattern="[0-9]*"
               inputMode="numeric"
               onKeyPress={(event) => {
@@ -428,14 +453,14 @@ const firebaseConfig = {
       </div>
       
       <div>
-            <input type="file" accept="image/*" onChange={handleImageChange} name="files[]" multiple/>
-            <button onClick={handleUpload}>Upload</button>
-            <img id="checkmark" alt="updated" src={checkmark}/>
-          </div>
+          <input type="file" accept="image/*" onChange={handleImageChange} name="files[]" multiple/>
+          <button onClick={handleUpload}>Upload</button>
+          <img id="checkmark" alt="updated" src={checkmark}/>
+      </div>
 
       <div>
-          <button type="submit" onClick={postListing}>
-            Submit
+          <button type="submit" className="submit" onClick={postListing}>
+            POST
           </button>
         </div>
     </div>

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 body { /*color of the body of the webpage*/
-  background-color: #d6e0f8; /* Replace with your desired color */
+  background-color: #d6e0f8; 
 }
 
 .information {
@@ -11,71 +11,112 @@ body { /*color of the body of the webpage*/
 
 .standard-text {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding: 10px;
-    width: 300px;
+    width: 350px;
+    height: 25px;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
+  }
+
+  .my-dropdown {
+    display: block;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 370px;
+    height: 47px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+  }
+
+  .address {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 235px;
+    height: 25px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
   }
 
   .room-apt {
     display: block;
     margin-bottom: 10px;
     padding: 10px;
-    width: 20px;
+    width: 95px;
+    height: 25px;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
   }
 
-  .room-apt {
+  .city {
     display: block;
     margin-bottom: 10px;
     padding: 10px;
-    width: 25px;
+    width: 155px;
+    height: 25px;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
+  }
+
+  .state {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 75px;
+    height: 47px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+  }
+
+  .zip {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 97px;
+    height: 25px;
+    border: 1px solid rgb(128, 128, 128);
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
   }
 
 .description {
     display: block;
     margin-bottom: 10px;
+    margin-top: 10px;
     padding: 10px;
-    height: 212px;
-    width: 604px;
+    height: 312px;
+    width: 800px;
     border: 1px solid rgb(128, 128, 128);
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
+    font-size: 22px;
     text-align: left;
     text-indent: 5px;
     line-height: 20px;
+    text-align: left;
+    overflow-wrap: break-word;
   }
-
-.my-dropdown {
-  display: block;
-  margin-bottom: -2px;
-  padding: 0px;
-  width: 200px;
-  height: 30px;
-  border: 1px solid rgb(128, 128, 128);
-  border-radius: 4px;
-  background-color: #fff;
-  font-size: 12px;
-  margin-right: 10px;
-}
 
 .property_info-container {
   display: flex;
   flex-direction: column; /* Each row will be placed vertically */
   justify-content: center;
   align-items: center; /* Align the rows to center */
-  gap: 1px;
+  gap: 0px;
 }
   
   .property_info_heading{
@@ -84,7 +125,9 @@ body { /*color of the body of the webpage*/
     justify-content: left;
     align-items: left; /* Align the rows to center */
     gap: 1px;
-    font-size: 36px;
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    margin-bottom: 20px;
   }
 
   .client_info_heading{
@@ -93,37 +136,19 @@ body { /*color of the body of the webpage*/
     justify-content: left;
     align-items: left; /* Align the rows to center */
     gap: 1px;
-    font-size: 36px;
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    margin-bottom: 20px;
   }
-
-/*
-  .property_info-container > div {
+  .title{
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 10px; 
-  }
-  
-  .property_info-container > div > label {
-    width: 150px;
-    margin-right: 10px; 
-  }
-  
-  .property_info-container > div > input {
-    flex: 1; 
-  }
-*/ 
-  .state {
-    display: block;
-    margin-bottom: -2px;
-    padding: 5px;
-    width: 200px;
-    height: 30px;
-    border: 1px solid rgb(128, 128, 128);
-    border-radius: 4px;
-    background-color: #fff;
-    font-size: 12px;
-    margin-right: 10px;
+    flex-direction: column; /* Each row will be placed vertically */
+    justify-content: left;
+    align-items: left; /* Align the rows to center */
+    gap: 1px;
+    font-family: 'Inter', sans-serif;
+    font-size: 70px;
+    font-weight: 700;
   }
 
 .row{
@@ -136,18 +161,31 @@ body { /*color of the body of the webpage*/
 .sub_row1{
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .sub_row2{
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .client_info_row {
   display: flex;
   justify-content: center;
   gap: 75px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.submit{
+  background-color: #091A71;
+  border-radius: 15px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  height: 90px;
+  width: 200px;
+  margin: 15px;
 }
 
 #checkmark {

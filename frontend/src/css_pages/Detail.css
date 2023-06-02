@@ -1,13 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+.listing-map {
+  border-radius: 15px;
+  height: '50vh';
+  width: '80%'
+}
+
 .standard-text {
     display: block;
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid gray;
     border-radius: 5px;
-    font-size: 16px;
-  }
-
-  .listing-img {
-    width: 400px;
+    font-family: 'Inter', sans-serif;
   }
   
+    .listing-name {
+        font-size: 52px;
+        font-weight:900;
+        margin: 15px;
+    }
+
+    .listing {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 20px 50px 20px 50px;
+      font-size: 24px;
+      min-width: 900px;
+      padding: 60px;
+      font-family: 'Inter', sans-serif;
+
+        .listing-desc {
+          display: flex;
+          justify-content: center;
+        }
+
+        .listing-images {
+          display: flex;
+          flex-direction: row;
+          margin: 50px;
+          flex-wrap: wrap;
+          justify-content: center;
+
+          .listing-img {
+            border-radius: 15px;
+            margin: 15px;
+            width: 500px;
+            height: 350px;
+          }
+        }
+
+        .desc-text {
+          border-radius: 15px;
+          background-color: #edeff2;
+          padding: 20px;
+          margin-left: 30px;
+          min-width: 600px;
+          min-height: 200px;
+          display: flex;
+          justify-content: start;
+        }
+
+        .listing-info {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            margin: 5px;
+        }
+
+        .listing-text {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            .listing-left {
+                display: flex;
+                flex-direction: column;
+                margin: 20px;
+                align-items: start;
+            }
+
+            .listing-right {
+                display: flex;
+                flex-direction: column;
+                margin: 20px;
+                align-items: start;
+            }
+        }
+
+        .listing-address-info {
+
+            .listing-address {
+                margin-left: 20px;
+            }
+
+        }
+
+        .button-delete{
+            background-color: #091A71;
+            border-radius: 5px;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            height: 25px;
+            width: 75px;
+            margin: 15px;
+          }
+
+        .listing-label {
+            font-weight: bold;
+        }
+    }

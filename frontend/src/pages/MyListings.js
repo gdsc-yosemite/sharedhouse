@@ -3,6 +3,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 import '../App.css';
+import '../css_pages/MyListings.css';
 
 function MyListings() {
     const [load, reload] = useState([]);
@@ -55,27 +56,67 @@ function MyListings() {
         }).then((response) => response.json())
           .then((json) => {
             console.log(json)
+            window.location.reload()
         });
     }
 
   return (
     <div className="listings">
-        <div>Listings</div>
+        <div className="title">My Listings</div>
         {
         listings.map((listing)=> (
             <div className="listing">
-                <hr></hr>
-                <div className="listing-name">{listing.name}</div>
-                <div className="listing-address">{listing.address}</div>
-                <div className="listing-location">{listing.location}</div>
-                <div className="listing-sqft">{listing.sqft}</div>
-                <div className="listing-rate">{listing.rate}</div>
-                <div className="listing-start-date">{listing.start_date}</div>
-                <div className="listing-end-date">{listing.end_date}</div>
-                <div className="listing-description">{listing.description}</div>
-                <div className="listing-contact">{listing.contact}</div>
+                <div className="listing-header">
+                    <div className="listing-name">{listing.name}</div>
+                    <div className="listing-contact-info">
+                            <div className="listing-display-name">{listing.display_name}</div>
+                            <div className="listing-contact"><span className="listing-label">Contact:</span> {listing.contact}</div>
+                    </div>
+                </div>
 
-                <button onClick={() => delListing(listing.id)}>Delete</button>
+                <div className="listing-text">
+                    <div className="listing-left">
+                        <div className="listing-address-info listing-info">
+                            <div className="listing-label">Address:</div>
+                            <div className="listing-address">
+                                <div className="listing-address-1">{listing.address} 
+                                    { listing.room_appt_num != "" && (
+                                        <span>, RM {listing.room_appt_num}</span>
+                                    )}
+                                </div>
+                                <div className="listing-address-2">{listing.city}, {listing.state} {listing.zip}</div>
+                            </div>
+                        </div>
+
+                        <div className="listing-date-info listing-info">
+                            <div className="listing-start-date"><span className="listing-label">Start Date:</span> {listing.start_date}</div>
+                            <div className="listing-end-date"><span className="listing-label">End Date:</span> {listing.end_date}</div>
+                        </div>
+
+                        <div className="listing-info">
+                            <div className="listing-rate"><span className="listing-label">Rate:</span> ${listing.rate}/mo.</div>
+                        </div>
+                        </div>
+
+                    <div className="listing-right">
+                        <div className="listing-type-info listing-info">
+                            <div className="listing-property-type"><span className="listing-label">Property Type:</span> {listing.property_type}</div>
+                            <div className="listing-type"><span className="listing-label">Listing Type:</span> {listing.listing_type}</div>
+                        </div>
+
+                        <div className="listing-amenity-info listing-info">
+                            <div className="listing-bedroom"><span className="listing-label"># of Bedrooms:</span> {listing.bedroom}</div>
+                            <div className="listing-bathroom"><span className="listing-label"># of Bathrooms</span> {listing.bathroom}</div>
+                            <div className="listing-parking"><span className="listing-label">Parking</span> {listing.parking}</div>
+                        </div>
+
+                        <div className="listing-info">
+                        <div className="listing-sqft"><span className="listing-label">Property sqft:</span> {listing.sqft}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button className="button-delete" onClick={() => delListing(listing.id)}>Delete</button>
             </div>
         ))
         }

@@ -12,9 +12,10 @@ import MyListings from './pages/MyListings';
 
 function App() {
   return (
+  
 
     <div className='App'>
-      <div className='navbar'>
+      <div className='navbar_js'>
         <Navbar />
       </div>
       <BrowserRouter>
