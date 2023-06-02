@@ -80,8 +80,8 @@ function MyListings() {
                             <div className="listing-label">Address:</div>
                             <div className="listing-address">
                                 <div className="listing-address-1">{listing.address} 
-                                    { listing.room_appt_num != null && (
-                                        <div>, RM {listing.room_appt_num}</div>
+                                    { listing.room_appt_num != "" && (
+                                        <span>, RM {listing.room_appt_num}</span>
                                     )}
                                 </div>
                                 <div className="listing-address-2">{listing.city}, {listing.state} {listing.zip}</div>
