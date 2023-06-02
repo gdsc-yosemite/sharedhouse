@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+.container {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+
+    .main-text {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        margin: 75px;
+        margin-right: 0px;
+        z-index: 2;
+
+        .big-title{
+            font-size: 70px;
+            font-weight: bold;
+
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+
+        .sub-title {
+            color: #909090;
+            font-size: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+
+            .spec-text{
+                color: #091A71;
+                font-weight: bold;
+            }
+        }
+
+        .findbtn {
+            height: 120%;
+        }
+        
+        .home-img {
+            width: 50%;
+        }
+    }
+}
