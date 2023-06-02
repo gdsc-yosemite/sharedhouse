@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
@@ -22,9 +23,19 @@ function Navbar() {
     });
   })
 
+  function logout() {
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      console.log('Sign-out successful.');
+    }).catch((error) => {
+      // An error happened.
+      console.log('An error happened.');
+    });		  		  
+  }
+
   return (
   <header className='content'>
-    <img class="logo "src={logo} alt="" />
+    <img class="logo" src={logo} alt="" />
       <nav class="nav_elements">
         <ul class="nav-links">
           <label for="checkbox_toggle" class="hamburger">&#9776;</label>
@@ -58,7 +69,7 @@ function Navbar() {
       }
       {
         currentUser != null && (
-          <a class="login" href="/login"><button>Logout</button></a>
+          <a class="login" onClick={logout} href="/login"><button>Logout</button></a>
         )
       }
   </header>

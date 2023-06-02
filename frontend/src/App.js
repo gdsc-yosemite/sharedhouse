@@ -15,7 +15,7 @@ function App() {
   
 
     <div className='App'>
-      <div className='Navbar_js'>
+      <div className='navbar_js'>
         <Navbar />
       </div>
       <BrowserRouter>
