@@ -13,7 +13,7 @@ function Home() {
   }
 
   return (
-    <div className="container">
+    <div className="home">
       <div className="main-text">
         <div className="big-title">
             <div>Housing</div>
